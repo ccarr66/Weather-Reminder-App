@@ -12,9 +12,18 @@ namespace Weather_Reminder_App
 {
     public partial class UserCreateWindow : Form
     {
+        protected static Program.Window nextWindow;
         public UserCreateWindow()
         {
+            nextWindow = Program.Window.Terminate;
             InitializeComponent();
         }
+
+
+        public Program.Window NextWindow
+        {
+            get { return nextWindow; }
+        }
+
     }
 }
