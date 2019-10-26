@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Weather-Reminder-App"
   ],
-  "SelectedNode": "\\Weather-Reminder-App.sln",
+  "SelectedNode": "\\Weather-Reminder-App\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
