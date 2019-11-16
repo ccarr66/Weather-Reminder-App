@@ -24,6 +24,8 @@ namespace Weather_Reminder_App
         private System.Windows.Forms.TextBox txtbx_Username;
         private System.Windows.Forms.Label lbl_Location;
         private System.Windows.Forms.TextBox txtbx_Location;
+        private System.Windows.Forms.Label lbl_EmailAddr;
+        private System.Windows.Forms.TextBox txtbx_EmailAddr;
 
         private static Program.WindowMode nextMode;
 
@@ -52,6 +54,8 @@ namespace Weather_Reminder_App
             this.txtbx_Username = new System.Windows.Forms.TextBox();
             this.lbl_Location = new System.Windows.Forms.Label();
             this.txtbx_Location = new System.Windows.Forms.TextBox();
+            this.lbl_EmailAddr = new System.Windows.Forms.Label();
+            this.txtbx_EmailAddr = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_SwitchtoSwitchUser
@@ -68,7 +72,7 @@ namespace Weather_Reminder_App
             // btn_CreateUser
             // 
             this.btn_CreateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CreateUser.Location = new System.Drawing.Point(235, 96);
+            this.btn_CreateUser.Location = new System.Drawing.Point(235, 142);
             this.btn_CreateUser.Name = "btn_CreateUser";
             this.btn_CreateUser.Size = new System.Drawing.Size(88, 76);
             this.btn_CreateUser.TabIndex = 2;
@@ -108,19 +112,38 @@ namespace Weather_Reminder_App
             this.txtbx_Location.Location = new System.Drawing.Point(50, 131);
             this.txtbx_Location.Name = "txtbx_Location";
             this.txtbx_Location.Size = new System.Drawing.Size(170, 20);
-            this.txtbx_Location.TabIndex = 1;
+            this.txtbx_Location.TabIndex = 0;
+            // 
+            // lbl_EmailAddr
+            // 
+            this.lbl_EmailAddr.AutoSize = true;
+            this.lbl_EmailAddr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_EmailAddr.Location = new System.Drawing.Point(8, 166);
+            this.lbl_EmailAddr.Name = "lbl_EmailAddr";
+            this.lbl_EmailAddr.Size = new System.Drawing.Size(63, 24);
+            this.lbl_EmailAddr.TabIndex = 0;
+            this.lbl_EmailAddr.Text = "Email Address(optional):";
+            //
+            // txtbx_Username
+            //
+            this.txtbx_EmailAddr.Location = new System.Drawing.Point(50, 197);
+            this.txtbx_EmailAddr.Name = "txtbx_Location";
+            this.txtbx_EmailAddr.Size = new System.Drawing.Size(170, 20);
+            this.txtbx_EmailAddr.TabIndex = 0;
             // 
             // UserWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 184);
+            this.ClientSize = new System.Drawing.Size(335, 230);
             this.Controls.Add(this.btn_SwitchtoSwitchUser);
             this.Controls.Add(this.btn_CreateUser);
             this.Controls.Add(this.lbl_Username);
             this.Controls.Add(this.txtbx_Username);
             this.Controls.Add(this.lbl_Location);
             this.Controls.Add(this.txtbx_Location);
+            this.Controls.Add(this.lbl_EmailAddr);
+            this.Controls.Add(this.txtbx_EmailAddr);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "User";
@@ -154,7 +177,7 @@ namespace Weather_Reminder_App
             // btn_SelectUser
             // 
             this.btn_SelectUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SelectUser.Location = new System.Drawing.Point(235, 96);
+            this.btn_SelectUser.Location = new System.Drawing.Point(235, 142);
             this.btn_SelectUser.Name = "btn_SelectUser";
             this.btn_SelectUser.Size = new System.Drawing.Size(88, 76);
             this.btn_SelectUser.TabIndex = 2;
@@ -188,7 +211,7 @@ namespace Weather_Reminder_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 184);
+            this.ClientSize = new System.Drawing.Size(335, 230);
             this.Controls.Add(this.lstBx_Users);
             this.Controls.Add(this.lbl_Users);
             this.Controls.Add(this.btn_SelectUser);
@@ -223,45 +246,56 @@ namespace Weather_Reminder_App
             if (lstBx_Users.SelectedIndex >= 0 && lstBx_Users.SelectedIndex < User.NumOfUsers)
             {
                 User.CurrentUser = User.UserList[lstBx_Users.SelectedIndex];
-                User.readUserFile();
-                nextMode = Program.WindowMode.Main;
-                this.Close();
+                while(!User.readUserFile())
+                {
+                    if (DialogResult.No == MessageBox.Show("User file read error. Select yes if you want to try again?", "Message", MessageBoxButtons.YesNo))
+                        break;
+                }
+                if (User.readUserFile())
+                {
+                    nextMode = Program.WindowMode.Main;
+                    this.Close();
+                }
             }
         }
 
         private void btn_CreateUser_Click(object sender, EventArgs e)
         {
-            bool usrValid = validateUsername();
-            bool locValid = validateLocation();
+            bool usrValid = User.validateUsername(txtbx_Username.Text) && User.userIsNew(txtbx_Username.Text);
+            bool locValid = User.validateLocation(txtbx_Location.Text);
+
+            bool emailValid = true; 
+            if (txtbx_EmailAddr.Text != "")
+            {
+                emailValid = User.validateEmailAddr(txtbx_EmailAddr.Text);
+                txtbx_EmailAddr.BackColor = (emailValid) ? Color.White : Color.LightGoldenrodYellow;
+            }
+
             txtbx_Username.BackColor = (usrValid) ? Color.White : Color.LightGoldenrodYellow;
             txtbx_Location.BackColor = (locValid) ? Color.White : Color.LightGoldenrodYellow;
-            if (usrValid && locValid)
+
+            if (usrValid && locValid && emailValid)
             {
-                if (!User.saveNewUser(txtbx_Username.Text, txtbx_Location.Text))
-                    return;
                 User.CurrentUser = txtbx_Username.Text;
                 User.UserLocation = txtbx_Location.Text;
-                nextMode = Program.WindowMode.Main;
-                this.Close();
+                User.UserEmailAddr = txtbx_EmailAddr.Text;
+                if (User.UserEmailAddr != "")
+                    User.AlertPreference = UserPreference.Both;
+                else
+                    User.AlertPreference = UserPreference.Desktop;
+
+                if (!User.saveUser())
+                    return;
+
+                if (User.readUserFile())
+                {
+                    nextMode = Program.WindowMode.Main;
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("User file read error.", "Message", MessageBoxButtons.OK);
             }
         }
 
-        private bool validateUsername()
-        {
-            string username = txtbx_Username.Text;
-            if (username.Contains("/") || username.Contains("\\") || username.Contains(":") || username.Contains("*") || username.Contains("?") || username.Contains("\\")
-                || username.Contains("|") || username.Contains("<") || username.Contains(">") || username.Contains("\""))
-                return false;
-
-            foreach (string usr in User.UserList)
-                if (username == usr)
-                    return false;
-            return true;
-        }
-
-        private bool validateLocation()
-        {
-            return WeatherLookup.validCity(txtbx_Location.Text);
-        }
     }
 }

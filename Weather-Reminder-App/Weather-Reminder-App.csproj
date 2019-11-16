@@ -38,7 +38,9 @@
       <HintPath>..\..\..\..\..\..\Program Files\IIS\Microsoft Web Deploy V3\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +89,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserWindow.resx">
       <DependentUpon>UserWindow.cs</DependentUpon>
@@ -104,6 +107,29 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\Large_W1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Large_W1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\small_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\edit dots symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\edit dots symbol small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Settings Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\group-profile-users_icon-icons.com_73540.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Weather_Reminder_App
 {
@@ -19,6 +20,7 @@ namespace Weather_Reminder_App
             Application.SetCompatibleTextRenderingDefault(false);
 
             User.determineAvailableUsers();
+            Point windowLocation = new Point(1000, 1000);
             WindowMode mode;
 
             if (User.NumOfUsers == 0)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Weather_Reminder_App
 {
@@ -14,12 +15,25 @@ namespace Weather_Reminder_App
         private static List<string> users;
         private static string currentUser;
         private static string locationCity;
+        private static string emailAddr;
+        private static UserPreference alertPref;
         private static List<UserAlert> alerts;
-        private static string[] divisionMarkers = new string[3]{ "##Username", "##Location", "##Alerts" };
+        private static string[] divisionMarkers = new string[5]{ "##Username", "##Location", "##User Alert Preference", "##Email Address", "##Alerts" };
         /*
          * data members describing user go here
          * need to develop appropriate getters/setters 
          */
+
+        static User()
+        {
+            appPath = "";
+            users = new List<string>();
+            currentUser = "";
+            locationCity = "";
+            emailAddr = "";
+            alertPref = UserPreference.Desktop;
+            alerts = new List<UserAlert>();
+        }
 
         public static void determineAvailableUsers()
         {
@@ -35,26 +49,32 @@ namespace Weather_Reminder_App
                 usrFiles[i] = usrFiles[i].Remove(usrFiles[i].Length - 4, 4);
                 users.Add(usrFiles[i]);
             }
-
-            currentUser = "NULL";
-            locationCity = "NULL";
-            alerts = new List<UserAlert>();
         }
 
-        public static bool saveNewUser(string username, string location)
+        public static bool saveUser()
         {
             //saves new user to file
-            string filePath = appPath + '\\' +  username + ".usr";
+            string filePath = appPath + '\\' +  currentUser + ".usr";
             try
             {
                 FileStream fs = new FileStream(filePath, FileMode.Create);
                 using (StreamWriter stream = new StreamWriter(fs))
                 {
                     stream.WriteLine(divisionMarkers[0]);
-                    stream.WriteLine(username);
+                    stream.WriteLine(currentUser);
+
                     stream.WriteLine(divisionMarkers[1]);
-                    stream.WriteLine(location);
+                    stream.WriteLine(locationCity);
+
                     stream.WriteLine(divisionMarkers[2]);
+                    stream.WriteLine(alertPref);
+
+                    stream.WriteLine(divisionMarkers[3]);
+                    stream.WriteLine(emailAddr);
+
+                    stream.WriteLine(divisionMarkers[4]);
+                    foreach (UserAlert al in User.alerts)
+                        stream.WriteLine(al.ToString());
                 }
                 fs.Close();
             }
@@ -94,8 +114,32 @@ namespace Weather_Reminder_App
                         User.locationCity = buf;
                     else return false;
 
+                    //Alert Pref
                     buf = stream.ReadLine();
                     if (buf != divisionMarkers[2])
+                        return false;
+
+                    buf = stream.ReadLine();
+                    if (buf != null)
+                    {
+                        if (!Enum.TryParse(buf, out alertPref))
+                            return false;
+                    }
+                    else return false;
+
+                    //Email Addr
+                    buf = stream.ReadLine();
+                    if (buf != divisionMarkers[3])
+                        return false;
+
+                    buf = stream.ReadLine();
+                    if (buf != null)
+                        User.emailAddr = buf;
+                    else return false;
+
+                    //ALERTS
+                    buf = stream.ReadLine();
+                    if (buf != divisionMarkers[4])
                         return false;
 
                     buf = stream.ReadLine();
@@ -122,6 +166,11 @@ namespace Weather_Reminder_App
             return true;
         }
 
+        public static void deleteUser(string username)
+        {
+            File.Delete(appPath + "\\" + username + ".usr");
+        }
+
         public static uint NumOfUsers
         {
             get { return (uint)(users.Count); }
@@ -133,15 +182,56 @@ namespace Weather_Reminder_App
             set { currentUser = value; }
         }
 
+        public static string UserLocation
+        {
+            get { return locationCity; }
+            set { locationCity = value; }
+        }
+
+        public static string UserEmailAddr
+        {
+            get { return emailAddr; }
+            set { emailAddr = value; }
+        }
+
+        public static UserPreference AlertPreference
+        {
+            get { return alertPref; }
+            set { alertPref = value; }
+        }
+
         public static List<string> UserList
         {
             get { return users; }
         }
 
-        public static string UserLocation
+        public static bool validateUsername(string username)
         {
-            get { return locationCity; }
-            set { locationCity = value; }
+            if (username.Contains("/") || username.Contains("\\") || username.Contains(":") || username.Contains("*") || username.Contains("?") || username.Contains("\\")
+                || username.Contains("|") || username.Contains("<") || username.Contains(">") || username.Contains("\""))
+                return false;
+            if (username.Length < 1)
+                return false;
+            return true;
+        }
+
+        public static bool userIsNew(string username)
+        {
+            determineAvailableUsers();
+            foreach (string usr in User.UserList)
+                if (username == usr)
+                    return false;
+            return true;
+        }
+
+        public static bool validateLocation(string location)
+        {
+            return WeatherLookup.validCity(location);
+        }
+
+        public static bool validateEmailAddr(string emailAddr)
+        {
+            return (new EmailAddressAttribute().IsValid(emailAddr));
         }
 
     }
@@ -184,4 +274,6 @@ namespace Weather_Reminder_App
             return hour.ToString() + " " + minute.ToString() + " " + weatherType + " " + temp;
         }
     }
+
+    public enum UserPreference { Desktop = 0, Email, Both };
 }
