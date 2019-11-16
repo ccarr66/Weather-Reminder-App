@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Weather_Reminder_App
 {
-    static class Reminder
+    static class Alerts
     {
     }
 }

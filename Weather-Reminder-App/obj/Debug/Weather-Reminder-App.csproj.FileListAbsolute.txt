@@ -1,0 +1,12 @@
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather-Reminder-App.csprojAssemblyReference.cache
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather_Reminder_App.MainWindow.resources
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather_Reminder_App.Properties.Resources.resources
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather-Reminder-App.csproj.GenerateResource.cache
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\bin\Debug\Weather-Reminder-App.exe.config
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\bin\Debug\Weather-Reminder-App.exe
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\bin\Debug\Weather-Reminder-App.pdb
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather-Reminder-App.exe
+C:\Users\conno\Source\Repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather-Reminder-App.pdb
+C:\Users\conno\source\repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather_Reminder_App.UserWindow.resources
+C:\Users\conno\source\repos\Weather-Reminder-App\Weather-Reminder-App\bin\Debug\Newtonsoft.Json.dll
+C:\Users\conno\source\repos\Weather-Reminder-App\Weather-Reminder-App\obj\Debug\Weather-Reminder-App.csproj.CopyComplete

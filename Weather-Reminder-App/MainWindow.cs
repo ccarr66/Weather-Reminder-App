@@ -12,16 +12,16 @@ namespace Weather_Reminder_App
 {
     public partial class MainWindow : Form
     {
-        private static Program.Window nextWindow;
+        private static Program.WindowMode nextMode;
         public MainWindow()
         {
-            nextWindow = Program.Window.Terminate;
+            nextMode = Program.WindowMode.Terminate;
             InitializeComponent();
         }
 
-        public Program.Window NextWindow
+        public Program.WindowMode NextMode
         {
-            get { return nextWindow; }
+            get { return nextMode; }
         }
     }
 }

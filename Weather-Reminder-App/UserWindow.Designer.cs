@@ -1,6 +1,6 @@
 ﻿namespace Weather_Reminder_App
 {
-    partial class UserCreateWindow
+    partial class UserWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "UserCreateWindow";
+            this.SuspendLayout();
+            // 
+            // UserWindow
+            // 
+            this.ResumeLayout(false);
+
         }
 
         #endregion

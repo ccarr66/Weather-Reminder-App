@@ -19,50 +19,41 @@ namespace Weather_Reminder_App
             Application.SetCompatibleTextRenderingDefault(false);
 
             User.determineAvailableUsers();
-            Window currentWindow;
+            WindowMode mode;
 
             if (User.NumOfUsers == 0)
             {
-                currentWindow = Window.UserCreate;
+                mode = WindowMode.Create;
             }
-            else if (User.NumOfUsers > 1)
+            else if (User.NumOfUsers >= 1)
             {
-                currentWindow = Window.UserSwitch;
-            }
-            else if (User.NumOfUsers == 1)
-            {
-                currentWindow = Window.MainWindow;
+                mode = WindowMode.Select;
             }
             else
-                return; //Consider adding error message here
-
+                mode = WindowMode.Terminate;
+            
             do
             {
-                if (currentWindow == Window.MainWindow)
+                if (mode == WindowMode.Main)
                 {
                     MainWindow MW = new MainWindow();
                     Application.Run(MW);
-                    currentWindow = MW.NextWindow;
+                    mode = MW.NextMode;
                 }
-                else if (currentWindow == Window.UserCreate)
+                else if(mode == WindowMode.Create || mode == WindowMode.Select)
                 {
-                    UserCreateWindow UCW = new UserCreateWindow();
-                    Application.Run(UCW);
-                    currentWindow = UCW.NextWindow;
-                }
-                else if (currentWindow == Window.UserSwitch)
-                {
-                    UserCreateWindow UCW = new UserCreateWindow();
-                    Application.Run(UCW);
-                    currentWindow = UCW.NextWindow;
+                    UserWindow UW = new UserWindow(mode);
+                    Application.Run(UW);
+                    mode = UW.NextMode;
                 }
                 else
-                    currentWindow = Window.Terminate;
+                    mode = WindowMode.Terminate;
 
-            } while (currentWindow != Window.Terminate);
+            } while (mode != WindowMode.Terminate);
+            
         }
 
-        public enum Window { Terminate = -1, MainWindow, UserCreate, UserSwitch };
+        public enum WindowMode { Terminate = -1, Main, Create, Select };
 
     }
 }

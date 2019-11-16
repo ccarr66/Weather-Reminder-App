@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\IIS\Microsoft Web Deploy V3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Location.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,20 +58,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reminder.cs" />
+    <Compile Include="Alerts.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="UserCreateWindow.cs">
+    <Compile Include="UserWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserCreateWindow.Designer.cs">
-      <DependentUpon>UserCreateWindow.cs</DependentUpon>
+    <Compile Include="UserWindow.Designer.cs">
+      <DependentUpon>UserWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserSelectWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserSelectWindow.Designer.cs">
-      <DependentUpon>UserSelectWindow.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Weather Lookup API\Clouds.cs" />
+    <Compile Include="Weather Lookup API\Coord.cs" />
+    <Compile Include="Weather Lookup API\Main.cs" />
+    <Compile Include="Weather Lookup API\Query.cs" />
+    <Compile Include="Weather Lookup API\Rain.cs" />
+    <Compile Include="Weather Lookup API\Snow.cs" />
+    <Compile Include="Weather Lookup API\Sys.cs" />
+    <Compile Include="Weather Lookup API\Weather.cs" />
+    <Compile Include="Weather Lookup API\Wind.cs" />
     <Compile Include="WeatherLookup.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -82,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserWindow.resx">
+      <DependentUpon>UserWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,5 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
