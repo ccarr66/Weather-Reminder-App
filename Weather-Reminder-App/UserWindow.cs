@@ -169,7 +169,7 @@ namespace Weather_Reminder_App
             this.btn_SwitchtoCreateUser.Location = new System.Drawing.Point(235, 12);
             this.btn_SwitchtoCreateUser.Name = "btn_SwitchtoCreateUser";
             this.btn_SwitchtoCreateUser.Size = new System.Drawing.Size(88, 76);
-            this.btn_SwitchtoCreateUser.TabIndex = 3;
+            this.btn_SwitchtoCreateUser.TabIndex = 0;
             this.btn_SwitchtoCreateUser.Text = "Create New User";
             this.btn_SwitchtoCreateUser.UseVisualStyleBackColor = true;
             this.btn_SwitchtoCreateUser.Click += new System.EventHandler(this.btn_SwitchtoCreateUser_Click);
@@ -180,32 +180,42 @@ namespace Weather_Reminder_App
             this.btn_SelectUser.Location = new System.Drawing.Point(235, 142);
             this.btn_SelectUser.Name = "btn_SelectUser";
             this.btn_SelectUser.Size = new System.Drawing.Size(88, 76);
-            this.btn_SelectUser.TabIndex = 2;
-            this.btn_SelectUser.Text = "Select User";
-            this.btn_SelectUser.UseVisualStyleBackColor = true;
             this.btn_SelectUser.Click += new System.EventHandler(this.btn_SelectUser_Click);
+            this.btn_SelectUser.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_SelectUser.FlatAppearance.BorderSize = 0;
+            this.btn_SelectUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SelectUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SelectUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SelectUser.Image = global::Weather_Reminder_App.Properties.Resources.UserSelect;
+            this.btn_SelectUser.TabIndex = 0;
+            this.btn_SelectUser.TabStop = false;
+            this.btn_SelectUser.UseVisualStyleBackColor = true;
             // 
             // lbl_Users
             // 
             this.lbl_Users.AutoSize = true;
-            this.lbl_Users.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Users.Location = new System.Drawing.Point(8, 34);
+            this.lbl_Users.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Users.Location = new System.Drawing.Point(40, 10);
             this.lbl_Users.Name = "lbl_Users";
-            this.lbl_Users.Size = new System.Drawing.Size(63, 24);
-            this.lbl_Users.TabIndex = 4;
-            this.lbl_Users.Text = "Users:";
+            this.lbl_Users.Size = new System.Drawing.Size(155, 40);
+            this.lbl_Users.TabIndex = 0;
+            this.lbl_Users.AutoSize = false;
+            this.lbl_Users.TextAlign = ContentAlignment.MiddleCenter;
+            this.lbl_Users.Text = "Select a User";
             // 
             // lstBx_Users
             // 
-            this.lstBx_Users.BackColor = System.Drawing.SystemColors.Control;
+            this.lstBx_Users.BackColor = Color.White;
             this.lstBx_Users.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstBx_Users.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstBx_Users.FormattingEnabled = true;
             this.lstBx_Users.ItemHeight = 24;
-            this.lstBx_Users.Location = new System.Drawing.Point(71, 61);
+            this.lstBx_Users.Location = new System.Drawing.Point(40, 65);
             this.lstBx_Users.Name = "lstBx_Users";
-            this.lstBx_Users.Size = new System.Drawing.Size(158, 96);
-            this.lstBx_Users.TabIndex = 1;
+            this.lstBx_Users.Size = new System.Drawing.Size(155, 205);
+            this.lstBx_Users.TabIndex = 0;
+            this.lstBx_Users.DrawMode = DrawMode.OwnerDrawFixed;
+            this.lstBx_Users.DrawItem += new DrawItemEventHandler(listBox_DrawItem);
             // 
             // UserSelectWindow
             // 
@@ -217,6 +227,7 @@ namespace Weather_Reminder_App
             this.Controls.Add(this.btn_SelectUser);
             this.Controls.Add(this.btn_SwitchtoCreateUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.BackColor = Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "User";
             this.Text = "User";
@@ -227,6 +238,28 @@ namespace Weather_Reminder_App
             foreach (string s in User.UserList)
                 lstBx_Users.Items.Add(s);
             lstBx_Users.SelectedIndex = 0;
+        }
+
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ListBox list = (ListBox)sender;
+            if (e.Index > -1)
+            {
+                object item = list.Items[e.Index];
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                    e = new DrawItemEventArgs(e.Graphics,
+                                              e.Font,
+                                              e.Bounds,
+                                              e.Index,
+                                              e.State ^ DrawItemState.Selected,
+                                              e.ForeColor,
+                                              Color.Black);//Choose the color
+                e.DrawBackground();
+                e.DrawFocusRectangle();
+                Brush brush = new SolidBrush(e.ForeColor);
+                SizeF size = e.Graphics.MeasureString(item.ToString(), e.Font);
+                e.Graphics.DrawString(item.ToString(), e.Font, brush, e.Bounds.Left + (e.Bounds.Width / 2 - size.Width / 2), e.Bounds.Top + (e.Bounds.Height / 2 - size.Height / 2));
+            }
         }
 
         private void btn_SwitchtoSwitchUser_Click(object sender, EventArgs e)

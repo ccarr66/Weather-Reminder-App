@@ -19,7 +19,7 @@ namespace Weather_Reminder_App
         private static string emailAddr;
         private static UserPreference alertPref;
         private static List<UserAlert> alerts;
-        private const int maxNumAlerts = 5;
+        public const int maxNumAlerts = 5;
         private static string[] divisionMarkers = new string[5]{ "##Username", "##Location", "##User Alert Preference", "##Email Address", "##Alerts" };
         /*
          * data members describing user go here

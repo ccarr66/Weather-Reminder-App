@@ -37,7 +37,8 @@ namespace Weather_Reminder_App
         private static bool alertAddingMode = false;
         private static List<CheckBox> removeAlertCheckBxs;
 
-        private static int nextAlert;
+        private static UserAlert nextAlert;
+        private static System.Windows.Forms.Timer alertTimer;
 
 
         public MainWindow()
@@ -329,6 +330,7 @@ namespace Weather_Reminder_App
         private void btn_SwitchUsers_Click(object sender, EventArgs e)
         {
             nextMode = Program.WindowMode.Select;
+            alertTimer = new System.Windows.Forms.Timer();
             this.Close();
         }
 
@@ -375,6 +377,7 @@ namespace Weather_Reminder_App
             {
                 this.Controls.Add(l);
             }
+            setNextAlert();
         }
 
         private void eraseAlertDisplay()
@@ -526,7 +529,7 @@ namespace Weather_Reminder_App
 
         private void btn_RemoveAlerts_Click(object sender, EventArgs e)
         {
-            if (!settingsOpen)
+            if (!settingsOpen && User.UserAlerts.Count > 0)
             {
                 if (alertAddingMode)
                 {
@@ -554,7 +557,7 @@ namespace Weather_Reminder_App
 
         private void btn_AddAlerts_Click(object sender, EventArgs e)
         {
-            if (!settingsOpen)
+            if (!settingsOpen && User.UserAlerts.Count <= User.maxNumAlerts)
             {
                 if (alertDeletingMode)
                 {
@@ -599,77 +602,80 @@ namespace Weather_Reminder_App
         private void addAlert()
         {
             bool addAlert = true;
-            string name;
-            if (txtbx_NAL_Name.Text.Length > 10)
-                name = txtbx_NAL_Name.Text.Substring(0, 10);
-            else
-                name = txtbx_NAL_Name.Text;
-
-            string[] time;
-            int hr = 0, min = 0;
-            time = txtbx_NAL_Time.Text.Split(':');
-            if (time.Length != 2)
-                addAlert = false;
-            else
+            if (User.UserAlerts.Count <= User.maxNumAlerts)
             {
-                if (Int32.TryParse(time[0], out hr) && Int32.TryParse(time[1], out min))
+                string name;
+                if (txtbx_NAL_Name.Text.Length > 10)
+                    name = txtbx_NAL_Name.Text.Substring(0, 10);
+                else
+                    name = txtbx_NAL_Name.Text;
+
+                string[] time;
+                int hr = 0, min = 0;
+                time = txtbx_NAL_Time.Text.Split(':');
+                if (time.Length != 2)
+                    addAlert = false;
+                else
                 {
-                    if (!(hr >= 0 && hr <= 23 && min >= 0 && min <= 59))
-                        addAlert = false;
-                    else
+                    if (Int32.TryParse(time[0], out hr) && Int32.TryParse(time[1], out min))
                     {
-                        if (cmbx_NAL_Time.SelectedItem.ToString() == "pm")
-                            hr += 12;
+                        if (!(hr >= 0 && hr <= 23 && min >= 0 && min <= 59))
+                            addAlert = false;
+                        else
+                        {
+                            if (cmbx_NAL_Time.SelectedItem.ToString() == "pm")
+                                hr += 12;
+                        }
+
                     }
 
                 }
 
-            }
-
-            string conditions = "";
-            if (chbx_NAL_All.Checked)
-                conditions = "All,";
-            else 
-            {
-                if (chbx_NAL_Atmosphere.Checked)
-                    conditions += "Atmos,";
-                if (chbx_NAL_Cold.Checked)
+                string conditions = "";
+                if (chbx_NAL_All.Checked)
+                    conditions = "All,";
+                else
                 {
-                    int coldThreshold = 0;
-                    if (Int32.TryParse(txtbx_NAL_Cold.Text, out coldThreshold) && coldThreshold >= -100 && coldThreshold <= 330)
-                        conditions += "Cold(" + coldThreshold.ToString() + "),";
-                    else 
-                        addAlert = false;
+                    if (chbx_NAL_Atmosphere.Checked)
+                        conditions += "Atmos,";
+                    if (chbx_NAL_Cold.Checked)
+                    {
+                        int coldThreshold = 0;
+                        if (Int32.TryParse(txtbx_NAL_Cold.Text, out coldThreshold) && coldThreshold >= -100 && coldThreshold <= 330)
+                            conditions += "Cold(" + coldThreshold.ToString() + "),";
+                        else
+                            addAlert = false;
+                    }
+                    if (chbx_NAL_Hot.Checked)
+                    {
+                        int hotThreshold = 0;
+                        if (Int32.TryParse(txtbx_NAL_Hot.Text, out hotThreshold) && hotThreshold >= -100 && hotThreshold <= 330)
+                            conditions += "Hot(" + hotThreshold.ToString() + "),";
+                        else
+                            addAlert = false;
+                    }
+                    if (chbx_NAL_Rain.Checked)
+                        conditions += "Rain,";
+                    if (chbx_NAL_Snow.Checked)
+                        conditions += "Snow,";
+                    if (chbx_NAL_Thunder.Checked)
+                        conditions += "Thund,";
                 }
-                if (chbx_NAL_Hot.Checked)
-                {
-                    int hotThreshold = 0;
-                    if (Int32.TryParse(txtbx_NAL_Hot.Text, out hotThreshold) && hotThreshold >= -100 && hotThreshold <= 330)
-                        conditions += "Hot(" + hotThreshold.ToString() + "),";
-                    else
-                        addAlert = false;
-                }
-                if (chbx_NAL_Rain.Checked)
-                    conditions += "Rain,";
-                if (chbx_NAL_Snow.Checked)
-                    conditions += "Snow,";
-                if(chbx_NAL_Thunder.Checked)
-                    conditions += "Thund,";
-            }
 
-            if (addAlert)
-            {
-                conditions = conditions.Remove(conditions.Length - 1, 1);
-                bool valid;
-                UserAlert NUR = new UserAlert(name, hr.ToString(), min.ToString(), conditions, out valid);
-                if (valid)
-                    User.UserAlerts.Add(NUR);
-                removeAlertAddControls();
-                removeSaveButton();
-                User.saveUser();
-                displayAlerts();
-                alertAddingMode = false;
-            }
+                if (addAlert)
+                {
+                    conditions = conditions.Remove(conditions.Length - 1, 1);
+                    bool valid;
+                    UserAlert NUR = new UserAlert(name, hr.ToString(), min.ToString(), conditions, out valid);
+                    if (valid)
+                        User.UserAlerts.Add(NUR);
+                    removeAlertAddControls();
+                    removeSaveButton();
+                    User.saveUser();
+                    displayAlerts();
+                    alertAddingMode = false;
+                }
+            }            
         }
 
         private void removeAlerts()
@@ -705,6 +711,71 @@ namespace Weather_Reminder_App
                 displayAlerts();
                 alertDeletingMode = false;
             }
+        }
+
+        private void setNextAlert()
+        {
+            alertTimer = new System.Windows.Forms.Timer();
+            if (User.UserAlerts.Count > 0)
+            {
+                DateTime now = DateTime.Now;
+                int hour = now.Hour;
+                int min = now.Minute;
+                int timeInMin = min * 60 + hour * 3600;
+                KeyValuePair<int, UserAlert> distToNextAlert = new KeyValuePair<int, UserAlert>(24 * 60, null);
+
+                foreach (UserAlert al in User.UserAlerts)
+                {
+                    int distance = (al.minute * 60 + al.hour * 3600) - timeInMin;
+                    if (distance < distToNextAlert.Key)
+                    {
+                        if(distance < 0)
+                            distToNextAlert = new KeyValuePair<int, UserAlert>(24*3600+distance, al);
+                        else
+                            distToNextAlert = new KeyValuePair<int, UserAlert>(distance, al);
+                    }
+                }
+
+                nextAlert = distToNextAlert.Value;
+                alertTimer.Tick += new EventHandler(alertEvent);
+                alertTimer.Interval = (distToNextAlert.Key) * 1000;
+                alertTimer.Start();
+            }
+
+        }
+
+        private void alertEvent(object source, EventArgs e)
+        {
+            alertTimer.Stop();
+
+            if (User.AlertPreference == UserPreference.Both)
+            {
+                desktopAlert();
+                emailAlert();
+            }
+            else if (User.AlertPreference == UserPreference.Email)
+                emailAlert();
+            else
+                desktopAlert();
+        }
+
+        private void desktopAlert()
+        {
+            bool alertNeeded?
+            string greeting = "Hello " + User.CurrentUser + "!" + System.Environment.NewLine;
+            if (WeatherLookup.weatherInfo.Weathers.Count > 0)
+            {
+                int weathertype = (int)Math.Floor((decimal)(WeatherLookup.weatherInfo.Weathers[0].ID / 100));
+                if (weathertype == 2 && nextAlert.conditions)
+
+            }
+
+            MessageBox.Show()
+        }
+
+        private void emailAlert()
+        {
+
         }
     }
 
