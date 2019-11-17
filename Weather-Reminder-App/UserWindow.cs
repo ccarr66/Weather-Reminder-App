@@ -246,15 +246,18 @@ namespace Weather_Reminder_App
             if (lstBx_Users.SelectedIndex >= 0 && lstBx_Users.SelectedIndex < User.NumOfUsers)
             {
                 User.CurrentUser = User.UserList[lstBx_Users.SelectedIndex];
-                while(!User.readUserFile())
-                {
-                    if (DialogResult.No == MessageBox.Show("User file read error. Select yes if you want to try again?", "Message", MessageBoxButtons.YesNo))
-                        break;
-                }
                 if (User.readUserFile())
                 {
                     nextMode = Program.WindowMode.Main;
                     this.Close();
+                }
+                else
+                {
+                    while (!User.readUserFile())
+                    {
+                        if (DialogResult.No == MessageBox.Show("User file read error. Select yes if you want to try again?", "Message", MessageBoxButtons.YesNo))
+                            break;
+                    }
                 }
             }
         }

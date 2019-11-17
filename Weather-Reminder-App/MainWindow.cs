@@ -10,18 +10,33 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net.Http;
 using System.Drawing.Imaging;
+using System.Globalization;
 
 namespace Weather_Reminder_App
 {
     public partial class MainWindow : Form
     {
         private static Program.WindowMode nextMode;
+
         private static bool settingsOpen;
+
         private const int normalWindowWidth = 500;
         private const int settingsWindowWidth = 700;
+
         private const string imgURL = "http://openweathermap.org/img/wn/";
         private static Image dispImage;
-        private static List<System.Windows.Forms.Label> alertDisplay;
+
+        private static List<Label> alertDisplay;
+        private static List<int> columnXCoords = new List<int>() { 12, 140, 205 };
+        private const int startingYCoord = 445;
+        private const int rowSeparation = 25;
+
+        private const int removeChbxXCoord = 460;
+        private const int removeChbxSeparation = 25;
+        private static bool alertDeletingMode = false;
+        private static bool alertAddingMode = false;
+        private static List<CheckBox> removeAlertCheckBxs;
+
         private static int nextAlert;
 
 
@@ -36,6 +51,11 @@ namespace Weather_Reminder_App
             this.Width = normalWindowWidth;
             this.Invalidate();
 
+            alertDisplay = new List<Label>();
+            removeAlertCheckBxs = new List<CheckBox>();
+
+            removeSaveButton();
+            removeAlertAddControls();
             if (WeatherLookup.update())
             {
                 updateDisplay();
@@ -312,7 +332,313 @@ namespace Weather_Reminder_App
 
         private void displayAlerts()
         {
-            Point StartingCoord = new Point(12, 445);
+            eraseAlertDisplay();
+
+            int index = 0; 
+            int row = 0;
+            foreach (UserAlert al in User.UserAlerts)
+            {
+                int col = 0;
+                alertDisplay.Add(new Label());
+                alertDisplay[index].TabIndex = 0;
+                alertDisplay[index].Name = index.ToString();
+                alertDisplay[index].Text = al.name;
+                alertDisplay[index].AutoSize = true;
+                alertDisplay[index++].Location = new Point(columnXCoords[col++], startingYCoord + rowSeparation * row);
+
+                alertDisplay.Add(new Label());
+                alertDisplay[index].TabIndex = 0;
+                alertDisplay[index].Name = index.ToString();
+                string time = (al.hour % 12).ToString() + ':' + (al.minute).ToString() + ((al.hour > 12) ? "pm" : "am");
+                alertDisplay[index].Text = time;
+                alertDisplay[index].AutoSize = true;
+                alertDisplay[index++].Location = new Point(columnXCoords[col++], startingYCoord + rowSeparation * row);
+
+                alertDisplay.Add(new Label());
+                alertDisplay[index].TabIndex = 0;
+                alertDisplay[index].Name = index.ToString();
+                string conditions = "";
+                for (int i = 0; i < al.conditions.Length; i++)
+                {
+                    conditions += al.conditions[i];
+                    if (i < al.conditions.Length - 1)
+                        conditions += ", ";
+                }
+                alertDisplay[index].Text = conditions;
+                alertDisplay[index].AutoSize = true;
+                alertDisplay[index++].Location = new Point(columnXCoords[col], startingYCoord + rowSeparation * row++);
+            }
+
+            foreach(Label l in alertDisplay)
+            {
+                this.Controls.Add(l);
+            }
         }
+
+        private void eraseAlertDisplay()
+        {
+            foreach (Label l in alertDisplay)
+                this.Controls.Remove(l);
+            alertDisplay.Clear();
+            this.Invalidate();
+        }
+
+        private void removeSaveButton()
+        {
+            saveAlerts.Enabled = false;
+            saveAlerts.Visible = false;
+        }
+
+        private void addSaveButton()
+        {
+            saveAlerts.Enabled = true;
+            saveAlerts.Visible = true;
+        }
+
+        private void removeAlertAddControls()
+        {
+            chbx_NAL_All.Enabled = false;
+            chbx_NAL_All.Visible = false;
+            chbx_NAL_All.Checked = false;
+
+            chbx_NAL_Atmosphere.Enabled = false;
+            chbx_NAL_Atmosphere.Visible = false;
+            chbx_NAL_Atmosphere.Checked = false;
+
+            chbx_NAL_Cold.Enabled = false;
+            chbx_NAL_Cold.Visible = false;
+            chbx_NAL_Cold.Checked = false;
+
+            chbx_NAL_Hot.Enabled = false;
+            chbx_NAL_Hot.Visible = false;
+            chbx_NAL_Hot.Checked = false;
+
+            chbx_NAL_Rain.Enabled = false;
+            chbx_NAL_Rain.Visible = false;
+            chbx_NAL_Rain.Checked = false;
+
+            chbx_NAL_Snow.Enabled = false;
+            chbx_NAL_Snow.Visible = false;
+            chbx_NAL_Snow.Checked = false;
+
+            chbx_NAL_Thunder.Enabled = false;
+            chbx_NAL_Thunder.Visible = false;
+            chbx_NAL_Thunder.Checked = false;
+
+            cmbx_NAL_Time.Enabled = false;
+            cmbx_NAL_Time.Visible = false;
+            cmbx_NAL_Time.SelectedIndex = 0;
+
+            txtbx_NAL_Cold.Enabled = false;
+            txtbx_NAL_Cold.Visible = false;
+            txtbx_NAL_Cold.Text = "";
+
+            txtbx_NAL_Hot.Enabled = false;
+            txtbx_NAL_Hot.Visible = false;
+            txtbx_NAL_Hot.Text = "";
+
+            txtbx_NAL_Name.Enabled = false;
+            txtbx_NAL_Name.Visible = false;
+            txtbx_NAL_Name.Text = "";
+
+            txtbx_NAL_Time.Enabled = false;
+            txtbx_NAL_Time.Visible = false;
+            txtbx_NAL_Time.Text = "";
+        }
+
+        private void addAlertAddControls()
+        {
+            eraseAlertDisplay();
+            chbx_NAL_All.Enabled = true;
+            chbx_NAL_All.Visible = true;
+            chbx_NAL_All.Checked = false;
+
+            chbx_NAL_Atmosphere.Enabled = true;
+            chbx_NAL_Atmosphere.Visible = true;
+            chbx_NAL_Atmosphere.Checked = false;
+
+            chbx_NAL_Cold.Enabled = true;
+            chbx_NAL_Cold.Visible = true;
+            chbx_NAL_Cold.Checked = false;
+
+            chbx_NAL_Hot.Enabled = true;
+            chbx_NAL_Hot.Visible = true;
+            chbx_NAL_Hot.Checked = false;
+
+            chbx_NAL_Rain.Enabled = true;
+            chbx_NAL_Rain.Visible = true;
+            chbx_NAL_Rain.Checked = false;
+
+            chbx_NAL_Snow.Enabled = true;
+            chbx_NAL_Snow.Visible = true;
+            chbx_NAL_Snow.Checked = false;
+
+            chbx_NAL_Thunder.Enabled = true;
+            chbx_NAL_Thunder.Visible = true;
+            chbx_NAL_Thunder.Checked = false;
+
+            cmbx_NAL_Time.Enabled = true;
+            cmbx_NAL_Time.Visible = true;
+            cmbx_NAL_Time.SelectedIndex = 0;
+
+            txtbx_NAL_Cold.Enabled = true;
+            txtbx_NAL_Cold.Visible = true;
+            txtbx_NAL_Cold.Text = "";
+
+            txtbx_NAL_Hot.Enabled = true;
+            txtbx_NAL_Hot.Visible = true;
+            txtbx_NAL_Hot.Text = "";
+
+            txtbx_NAL_Name.Enabled = true;
+            txtbx_NAL_Name.Visible = true;
+            txtbx_NAL_Name.Text = "";
+
+            txtbx_NAL_Time.Enabled = true;
+            txtbx_NAL_Time.Visible = true;
+            txtbx_NAL_Time.Text = "";
+
+            this.Invalidate();
+        }
+
+        private void removeAlertDeleteControls()
+        {
+            foreach (CheckBox cb in removeAlertCheckBxs)
+                this.Controls.Remove(cb);
+            removeAlertCheckBxs.Clear();
+            this.Invalidate();
+        }
+
+        private void addAlertDeleteControls()
+        {
+            int index = 0;
+            foreach(UserAlert al in User.UserAlerts)
+            {
+                removeAlertCheckBxs.Add(new CheckBox());
+                removeAlertCheckBxs[index].TabIndex = 0;
+                removeAlertCheckBxs[index].Name = index.ToString();
+                removeAlertCheckBxs[index].Text = "";
+                removeAlertCheckBxs[index].Location = new Point(removeChbxXCoord, startingYCoord + rowSeparation * index);
+                this.Controls.Add(removeAlertCheckBxs[index++]);
+            }
+        }
+
+        private void btn_RemoveAlerts_Click(object sender, EventArgs e)
+        {
+            if (!settingsOpen)
+            {
+                if (alertAddingMode)
+                {
+                    alertAddingMode = false;
+                    removeAlertAddControls();
+                    removeSaveButton();
+                    displayAlerts();
+                }
+                
+                if (alertDeletingMode)
+                {
+                    alertDeletingMode = false;
+                    removeAlertDeleteControls();
+                    removeSaveButton();
+                }
+                else
+                {
+                    alertDeletingMode = true;
+                    addAlertDeleteControls();
+                    addSaveButton();
+                }
+
+            }
+        }
+
+        private void btn_AddAlerts_Click(object sender, EventArgs e)
+        {
+            if (!settingsOpen)
+            {
+                if (alertDeletingMode)
+                {
+                    alertDeletingMode = false;
+                    removeAlertDeleteControls();
+                    removeSaveButton();
+                    displayAlerts();
+                }
+
+                if (alertAddingMode)
+                {
+                    alertAddingMode = false;
+                    removeAlertAddControls();
+                    removeSaveButton();
+                    displayAlerts();
+                }
+                else
+                {
+                    alertAddingMode = true;
+                    addAlertAddControls();
+                    addSaveButton();
+                }
+
+            }
+        }
+
+        private void saveAlerts_Click(object sender, EventArgs e)
+        {
+            if (!settingsOpen)
+            {
+                if (alertAddingMode)
+                {
+                    addAlert();
+                }
+                else if (alertDeletingMode)
+                {
+                    removeAlerts();
+                }
+            }
+        }
+
+        private void addAlert()
+        {
+            bool addAlert = true;
+            string name;
+            if (txtbx_NAL_Name.Text.Length > 10)
+                name = txtbx_NAL_Name.Text.Substring(0, 10);
+            else
+                name = txtbx_NAL_Name.Text;
+
+            string[] time;
+            int hr, min;
+            time = txtbx_NAL_Time.Text.Split(':');
+            if (time.Length != 2)
+                addAlert = false;
+            else
+            {
+                if (Int32.TryParse(time[0], out hr) && Int32.TryParse(time[1], out min))
+                    if (!(hr >= 0 && hr <= 23 && min >= 0 && min <= 59))
+                        addAlert = false;
+            }
+
+            string conditions = "";
+            if (chbx_NAL_All.Checked)
+                conditions = "All,";
+            else 
+            {
+                
+            }
+
+
+        }
+
+        private void removeAlerts()
+        {
+            for(int i = removeAlertCheckBxs.Count - 1; i >= 0; i--)
+            {
+                if (removeAlertCheckBxs[i].Checked)
+                    User.UserAlerts.RemoveAt(i);
+            }
+
+            removeAlertDeleteControls();
+            User.saveUser();
+            displayAlerts();
+            addAlertDeleteControls();
+        }
+
     }
 }

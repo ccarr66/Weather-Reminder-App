@@ -19,6 +19,7 @@ namespace Weather_Reminder_App
         private static string emailAddr;
         private static UserPreference alertPref;
         private static List<UserAlert> alerts;
+        private const int maxNumAlerts = 5;
         private static string[] divisionMarkers = new string[5]{ "##Username", "##Location", "##User Alert Preference", "##Email Address", "##Alerts" };
         /*
          * data members describing user go here
@@ -152,7 +153,7 @@ namespace Weather_Reminder_App
                         {
                             bool validUR;
                             UserAlert newUR = new UserAlert(parts[0], parts[1], parts[2], parts[3], out validUR);
-                            if (validUR)
+                            if (validUR && User.alerts.Count < maxNumAlerts)
                                 User.alerts.Add(newUR);
                         }
                         buf = stream.ReadLine();
@@ -207,10 +208,9 @@ namespace Weather_Reminder_App
             get { return users; }
         }
 
-        public static UserAlert AddUserAlert
+        public static List<UserAlert> UserAlerts
         {
-            set { alerts.Add(value); }
-
+            get { return alerts;}
         }
 
         public static bool validateUsername(string username)
@@ -276,11 +276,11 @@ namespace Weather_Reminder_App
                         break;
                     case "Rain":
                         break;
-                    case "Thunder":
+                    case "Thund":
                         break;
                     case "Snow":
                         break;
-                    case "Atmosphere":
+                    case "Atmos":
                         break;
                     default:
                         {

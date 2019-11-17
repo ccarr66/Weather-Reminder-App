@@ -60,22 +60,27 @@
             this.txtbx_SettUser = new System.Windows.Forms.TextBox();
             this.lbl_SettUser = new System.Windows.Forms.Label();
             this.lbl_Settings = new System.Windows.Forms.Label();
-            this.btn_SwitchUsers = new System.Windows.Forms.Button();
-            this.btn_Settings = new System.Windows.Forms.Button();
-            this.btn_EditAlerts = new System.Windows.Forms.Button();
-            this.pctbx_WeatherIcon = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.saveAlerts = new System.Windows.Forms.Button();
+            this.btn_RemoveAlerts = new System.Windows.Forms.Button();
+            this.btn_SwitchUsers = new System.Windows.Forms.Button();
+            this.btn_Settings = new System.Windows.Forms.Button();
+            this.btn_AddAlerts = new System.Windows.Forms.Button();
+            this.pctbx_WeatherIcon = new System.Windows.Forms.PictureBox();
+            this.txtbx_NAL_Name = new System.Windows.Forms.TextBox();
+            this.txtbx_NAL_Time = new System.Windows.Forms.TextBox();
+            this.cmbx_NAL_Time = new System.Windows.Forms.ComboBox();
+            this.chbx_NAL_All = new System.Windows.Forms.CheckBox();
+            this.chbx_NAL_Rain = new System.Windows.Forms.CheckBox();
+            this.chbx_NAL_Snow = new System.Windows.Forms.CheckBox();
+            this.chbx_NAL_Thunder = new System.Windows.Forms.CheckBox();
+            this.chbx_NAL_Atmosphere = new System.Windows.Forms.CheckBox();
+            this.chbx_NAL_Hot = new System.Windows.Forms.CheckBox();
+            this.txtbx_NAL_Hot = new System.Windows.Forms.TextBox();
+            this.txtbx_NAL_Cold = new System.Windows.Forms.TextBox();
+            this.chbx_NAL_Cold = new System.Windows.Forms.CheckBox();
             this.pnl_Settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbx_WeatherIcon)).BeginInit();
             this.SuspendLayout();
@@ -385,6 +390,68 @@
             this.lbl_Settings.Text = "Settings";
             this.lbl_Settings.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 416);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(139, 416);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Time";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(203, 416);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Conditions";
+            // 
+            // saveAlerts
+            // 
+            this.saveAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.saveAlerts.FlatAppearance.BorderSize = 0;
+            this.saveAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.saveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.saveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.checkmark;
+            this.saveAlerts.Location = new System.Drawing.Point(387, 382);
+            this.saveAlerts.Name = "saveAlerts";
+            this.saveAlerts.Size = new System.Drawing.Size(25, 25);
+            this.saveAlerts.TabIndex = 0;
+            this.saveAlerts.TabStop = false;
+            this.saveAlerts.UseVisualStyleBackColor = true;
+            this.saveAlerts.Click += new System.EventHandler(this.saveAlerts_Click);
+            // 
+            // btn_RemoveAlerts
+            // 
+            this.btn_RemoveAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_RemoveAlerts.FlatAppearance.BorderSize = 0;
+            this.btn_RemoveAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_RemoveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btn_RemoveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RemoveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.minus;
+            this.btn_RemoveAlerts.Location = new System.Drawing.Point(418, 382);
+            this.btn_RemoveAlerts.Name = "btn_RemoveAlerts";
+            this.btn_RemoveAlerts.Size = new System.Drawing.Size(25, 25);
+            this.btn_RemoveAlerts.TabIndex = 0;
+            this.btn_RemoveAlerts.TabStop = false;
+            this.btn_RemoveAlerts.UseVisualStyleBackColor = true;
+            this.btn_RemoveAlerts.Click += new System.EventHandler(this.btn_RemoveAlerts_Click);
+            // 
             // btn_SwitchUsers
             // 
             this.btn_SwitchUsers.BackColor = System.Drawing.Color.Transparent;
@@ -418,20 +485,21 @@
             this.btn_Settings.UseVisualStyleBackColor = true;
             this.btn_Settings.Click += new System.EventHandler(this.btn_Settings_Click);
             // 
-            // btn_EditAlerts
+            // btn_AddAlerts
             // 
-            this.btn_EditAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_EditAlerts.FlatAppearance.BorderSize = 0;
-            this.btn_EditAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btn_EditAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btn_EditAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_EditAlerts.Image = global::Weather_Reminder_App.Properties.Resources.edit_dots_symbol_small;
-            this.btn_EditAlerts.Location = new System.Drawing.Point(449, 377);
-            this.btn_EditAlerts.Name = "btn_EditAlerts";
-            this.btn_EditAlerts.Size = new System.Drawing.Size(23, 39);
-            this.btn_EditAlerts.TabIndex = 0;
-            this.btn_EditAlerts.TabStop = false;
-            this.btn_EditAlerts.UseVisualStyleBackColor = true;
+            this.btn_AddAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_AddAlerts.FlatAppearance.BorderSize = 0;
+            this.btn_AddAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_AddAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btn_AddAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AddAlerts.Image = global::Weather_Reminder_App.Properties.Resources.plus;
+            this.btn_AddAlerts.Location = new System.Drawing.Point(449, 382);
+            this.btn_AddAlerts.Name = "btn_AddAlerts";
+            this.btn_AddAlerts.Size = new System.Drawing.Size(25, 25);
+            this.btn_AddAlerts.TabIndex = 0;
+            this.btn_AddAlerts.TabStop = false;
+            this.btn_AddAlerts.UseVisualStyleBackColor = true;
+            this.btn_AddAlerts.Click += new System.EventHandler(this.btn_AddAlerts_Click);
             // 
             // pctbx_WeatherIcon
             // 
@@ -443,116 +511,129 @@
             this.pctbx_WeatherIcon.TabIndex = 1;
             this.pctbx_WeatherIcon.TabStop = false;
             // 
-            // label3
+            // txtbx_NAL_Name
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 416);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Name";
+            this.txtbx_NAL_Name.Location = new System.Drawing.Point(16, 439);
+            this.txtbx_NAL_Name.MaxLength = 10;
+            this.txtbx_NAL_Name.Name = "txtbx_NAL_Name";
+            this.txtbx_NAL_Name.Size = new System.Drawing.Size(87, 20);
+            this.txtbx_NAL_Name.TabIndex = 0;
+            this.txtbx_NAL_Name.TabStop = false;
             // 
-            // label4
+            // txtbx_NAL_Time
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(139, 416);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Time";
+            this.txtbx_NAL_Time.Location = new System.Drawing.Point(143, 439);
+            this.txtbx_NAL_Time.Name = "txtbx_NAL_Time";
+            this.txtbx_NAL_Time.Size = new System.Drawing.Size(51, 20);
+            this.txtbx_NAL_Time.TabIndex = 0;
+            this.txtbx_NAL_Time.TabStop = false;
             // 
-            // label5
+            // cmbx_NAL_Time
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 445);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "WMWMWMWMWM";
+            this.cmbx_NAL_Time.FormattingEnabled = true;
+            this.cmbx_NAL_Time.Items.AddRange(new object[] {
+            "am",
+            "pm"});
+            this.cmbx_NAL_Time.Location = new System.Drawing.Point(143, 465);
+            this.cmbx_NAL_Time.Name = "cmbx_NAL_Time";
+            this.cmbx_NAL_Time.Size = new System.Drawing.Size(29, 21);
+            this.cmbx_NAL_Time.TabIndex = 0;
+            this.cmbx_NAL_Time.TabStop = false;
             // 
-            // label6
+            // chbx_NAL_All
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(140, 445);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "23:59";
+            this.chbx_NAL_All.AutoSize = true;
+            this.chbx_NAL_All.Location = new System.Drawing.Point(207, 439);
+            this.chbx_NAL_All.Name = "chbx_NAL_All";
+            this.chbx_NAL_All.Size = new System.Drawing.Size(37, 17);
+            this.chbx_NAL_All.TabIndex = 0;
+            this.chbx_NAL_All.TabStop = false;
+            this.chbx_NAL_All.Text = "All";
+            this.chbx_NAL_All.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // chbx_NAL_Rain
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(203, 416);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 20);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Conditions";
+            this.chbx_NAL_Rain.AutoSize = true;
+            this.chbx_NAL_Rain.Location = new System.Drawing.Point(207, 463);
+            this.chbx_NAL_Rain.Name = "chbx_NAL_Rain";
+            this.chbx_NAL_Rain.Size = new System.Drawing.Size(48, 17);
+            this.chbx_NAL_Rain.TabIndex = 0;
+            this.chbx_NAL_Rain.TabStop = false;
+            this.chbx_NAL_Rain.Text = "Rain";
+            this.chbx_NAL_Rain.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // chbx_NAL_Snow
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(204, 445);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(265, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Rain, Snow, Thunder, Atmosphere, Hot(100), Cold(-30)";
+            this.chbx_NAL_Snow.AutoSize = true;
+            this.chbx_NAL_Snow.Location = new System.Drawing.Point(207, 486);
+            this.chbx_NAL_Snow.Name = "chbx_NAL_Snow";
+            this.chbx_NAL_Snow.Size = new System.Drawing.Size(53, 17);
+            this.chbx_NAL_Snow.TabIndex = 0;
+            this.chbx_NAL_Snow.TabStop = false;
+            this.chbx_NAL_Snow.Text = "Snow";
+            this.chbx_NAL_Snow.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // chbx_NAL_Thunder
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(205, 470);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(265, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Rain, Snow, Thunder, Atmosphere, Hot(100), Cold(-30)";
+            this.chbx_NAL_Thunder.AutoSize = true;
+            this.chbx_NAL_Thunder.Location = new System.Drawing.Point(207, 509);
+            this.chbx_NAL_Thunder.Name = "chbx_NAL_Thunder";
+            this.chbx_NAL_Thunder.Size = new System.Drawing.Size(66, 17);
+            this.chbx_NAL_Thunder.TabIndex = 0;
+            this.chbx_NAL_Thunder.TabStop = false;
+            this.chbx_NAL_Thunder.Text = "Thunder";
+            this.chbx_NAL_Thunder.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // chbx_NAL_Atmosphere
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(141, 470);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "23:59";
+            this.chbx_NAL_Atmosphere.AutoSize = true;
+            this.chbx_NAL_Atmosphere.Location = new System.Drawing.Point(207, 533);
+            this.chbx_NAL_Atmosphere.Name = "chbx_NAL_Atmosphere";
+            this.chbx_NAL_Atmosphere.Size = new System.Drawing.Size(82, 17);
+            this.chbx_NAL_Atmosphere.TabIndex = 0;
+            this.chbx_NAL_Atmosphere.TabStop = false;
+            this.chbx_NAL_Atmosphere.Text = "Atmosphere";
+            this.chbx_NAL_Atmosphere.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // chbx_NAL_Hot
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 470);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(107, 13);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "WMWMWMWMWM";
+            this.chbx_NAL_Hot.AutoSize = true;
+            this.chbx_NAL_Hot.Location = new System.Drawing.Point(296, 439);
+            this.chbx_NAL_Hot.Name = "chbx_NAL_Hot";
+            this.chbx_NAL_Hot.Size = new System.Drawing.Size(43, 17);
+            this.chbx_NAL_Hot.TabIndex = 0;
+            this.chbx_NAL_Hot.TabStop = false;
+            this.chbx_NAL_Hot.Text = "Hot";
+            this.chbx_NAL_Hot.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // txtbx_NAL_Hot
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(204, 495);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(265, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Rain, Snow, Thunder, Atmosphere, Hot(100), Cold(-30)";
+            this.txtbx_NAL_Hot.Location = new System.Drawing.Point(345, 436);
+            this.txtbx_NAL_Hot.MaxLength = 4;
+            this.txtbx_NAL_Hot.Name = "txtbx_NAL_Hot";
+            this.txtbx_NAL_Hot.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_NAL_Hot.TabIndex = 0;
+            this.txtbx_NAL_Hot.TabStop = false;
             // 
-            // label13
+            // txtbx_NAL_Cold
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(140, 495);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 13);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "23:59";
+            this.txtbx_NAL_Cold.Location = new System.Drawing.Point(345, 459);
+            this.txtbx_NAL_Cold.MaxLength = 4;
+            this.txtbx_NAL_Cold.Name = "txtbx_NAL_Cold";
+            this.txtbx_NAL_Cold.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_NAL_Cold.TabIndex = 0;
+            this.txtbx_NAL_Cold.TabStop = false;
             // 
-            // label14
+            // chbx_NAL_Cold
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 495);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(107, 13);
-            this.label14.TabIndex = 11;
-            this.label14.Text = "WMWMWMWMWM";
+            this.chbx_NAL_Cold.AutoSize = true;
+            this.chbx_NAL_Cold.Location = new System.Drawing.Point(296, 462);
+            this.chbx_NAL_Cold.Name = "chbx_NAL_Cold";
+            this.chbx_NAL_Cold.Size = new System.Drawing.Size(47, 17);
+            this.chbx_NAL_Cold.TabIndex = 0;
+            this.chbx_NAL_Cold.TabStop = false;
+            this.chbx_NAL_Cold.Text = "Cold";
+            this.chbx_NAL_Cold.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -560,22 +641,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(684, 611);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtbx_NAL_Cold);
+            this.Controls.Add(this.chbx_NAL_Cold);
+            this.Controls.Add(this.txtbx_NAL_Hot);
+            this.Controls.Add(this.chbx_NAL_Hot);
+            this.Controls.Add(this.chbx_NAL_Atmosphere);
+            this.Controls.Add(this.chbx_NAL_Thunder);
+            this.Controls.Add(this.chbx_NAL_Snow);
+            this.Controls.Add(this.chbx_NAL_Rain);
+            this.Controls.Add(this.chbx_NAL_All);
+            this.Controls.Add(this.cmbx_NAL_Time);
+            this.Controls.Add(this.txtbx_NAL_Time);
+            this.Controls.Add(this.txtbx_NAL_Name);
+            this.Controls.Add(this.saveAlerts);
+            this.Controls.Add(this.btn_RemoveAlerts);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pnl_Settings);
             this.Controls.Add(this.btn_SwitchUsers);
             this.Controls.Add(this.btn_Settings);
-            this.Controls.Add(this.btn_EditAlerts);
+            this.Controls.Add(this.btn_AddAlerts);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_DispClouds);
             this.Controls.Add(this.lbl_LCloud);
@@ -629,7 +715,7 @@
         private System.Windows.Forms.Label lbl_LCloud;
         private System.Windows.Forms.Label lbl_DispClouds;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_EditAlerts;
+        private System.Windows.Forms.Button btn_AddAlerts;
         private System.Windows.Forms.Button btn_Settings;
         private System.Windows.Forms.Panel pnl_Settings;
         private System.Windows.Forms.Label lbl_Settings;
@@ -647,16 +733,21 @@
         private System.Windows.Forms.Button btn_SwitchUsers;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btn_RemoveAlerts;
+        private System.Windows.Forms.Button saveAlerts;
+        private System.Windows.Forms.TextBox txtbx_NAL_Name;
+        private System.Windows.Forms.TextBox txtbx_NAL_Time;
+        private System.Windows.Forms.ComboBox cmbx_NAL_Time;
+        private System.Windows.Forms.CheckBox chbx_NAL_All;
+        private System.Windows.Forms.CheckBox chbx_NAL_Rain;
+        private System.Windows.Forms.CheckBox chbx_NAL_Snow;
+        private System.Windows.Forms.CheckBox chbx_NAL_Thunder;
+        private System.Windows.Forms.CheckBox chbx_NAL_Atmosphere;
+        private System.Windows.Forms.CheckBox chbx_NAL_Hot;
+        private System.Windows.Forms.TextBox txtbx_NAL_Hot;
+        private System.Windows.Forms.TextBox txtbx_NAL_Cold;
+        private System.Windows.Forms.CheckBox chbx_NAL_Cold;
     }
 }
 
