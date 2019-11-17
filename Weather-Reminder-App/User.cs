@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace Weather_Reminder_App
 {
@@ -88,6 +89,7 @@ namespace Weather_Reminder_App
 
         public static bool readUserFile()
         {
+            alerts = new List<UserAlert>();
             //reads user info from file
             //saves new user to file
             string filePath = appPath + '\\' + User.CurrentUser + ".usr";
@@ -145,7 +147,7 @@ namespace Weather_Reminder_App
                     buf = stream.ReadLine();
                     while(buf != null)
                     {
-                        string[] parts = buf.Split(' ');
+                        string[] parts = buf.Split(';');
                         if(parts.Length == 4)
                         {
                             bool validUR;
@@ -205,6 +207,12 @@ namespace Weather_Reminder_App
             get { return users; }
         }
 
+        public static UserAlert AddUserAlert
+        {
+            set { alerts.Add(value); }
+
+        }
+
         public static bool validateUsername(string username)
         {
             if (username.Contains("/") || username.Contains("\\") || username.Contains(":") || username.Contains("*") || username.Contains("?") || username.Contains("\\")
@@ -238,14 +246,18 @@ namespace Weather_Reminder_App
 
     class UserAlert
     {
+        public string name;
         public int hour;
         public int minute;
-        public string weatherType;
-        public int temp;
-        public UserAlert(string hr, string min, string wT, string val, out bool valid)
+        public string[] conditions;
+        public UserAlert(string nm, string hr, string min, string conds, out bool valid)
         {
 
             valid = true;
+            if (nm.Length > 10)
+                this.name = nm.Substring(0, 10);
+            else
+                this.name = nm;
 
             this.hour = Convert.ToInt32(hr);
             if (this.hour > 23 || this.hour < 0)
@@ -255,23 +267,49 @@ namespace Weather_Reminder_App
             if (this.minute > 59 || this.minute < 0)
                 valid = false;
 
-            this.weatherType = wT;
-            if (this.weatherType != "Rain" && this.weatherType != "Thunder" && this.weatherType != "Snow" && this.weatherType != "Atmosphere" && this.weatherType != "Cold" && this.weatherType != "Hot" && this.weatherType != "Clear")
-                valid = false;
-
-            if (val == "null")
-                this.temp = -1;
-            else
+            this.conditions = conds.Split(',');
+            foreach(string cond in conditions)
             {
-                this.temp = Convert.ToInt32(val);
-                if (this.temp > 330 || this.temp < 190)
-                    valid = false;
+                switch(cond)
+                {
+                    case "All":
+                        break;
+                    case "Rain":
+                        break;
+                    case "Thunder":
+                        break;
+                    case "Snow":
+                        break;
+                    case "Atmosphere":
+                        break;
+                    default:
+                        {
+                            if (cond.StartsWith("Hot") || cond.StartsWith("Cold"))
+                            {
+                                string resultString = Regex.Match(cond, @"\d+").Value;
+                                int temperature;
+                                if (!Int32.TryParse(resultString, out temperature))
+                                    valid = false;
+                            }
+                            else
+                                valid = false;
+                            break;
+                        }
+                }
             }
         }
 
         public override string ToString()
         {
-            return hour.ToString() + " " + minute.ToString() + " " + weatherType + " " + temp;
+            string output = name + ';' + hour.ToString() + ';' + minute.ToString() + ';';
+            for (int i = 0; i < conditions.Length; i++)
+            {
+                output += conditions[i];
+                if (i < conditions.Length - 1)
+                    output += ',';
+            }
+
+            return output;
         }
     }
 

@@ -7,3 +7,5 @@ Desktop
 ##Email Address
 
 ##Alerts
+Morn;6;30;All,Snow,Rain,Thunder,Hot(90),Cold(30)
+Night;17;30;Rain,Thunder,Cold(30)

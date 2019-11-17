@@ -21,6 +21,9 @@ namespace Weather_Reminder_App
         private const int settingsWindowWidth = 700;
         private const string imgURL = "http://openweathermap.org/img/wn/";
         private static Image dispImage;
+        private static List<System.Windows.Forms.Label> alertDisplay;
+        private static int nextAlert;
+
 
         public MainWindow()
         {
@@ -34,7 +37,9 @@ namespace Weather_Reminder_App
             this.Invalidate();
 
             if (WeatherLookup.update())
+            {
                 updateDisplay();
+            }
             else
                 openSettingsPane();
 
@@ -90,8 +95,9 @@ namespace Weather_Reminder_App
             lbl_DispWindDir.Text = WeatherLookup.weatherInfo.Wind.Direction.ToString();
             lbl_DispClouds.Text = WeatherLookup.weatherInfo.Clouds.All.ToString() + '%';
 
-
             this.Invalidate();
+
+            displayAlerts();
         }
 
         public void convertDoubleArc(decimal val, out decimal degrees, out decimal min, out decimal sec)
@@ -256,11 +262,6 @@ namespace Weather_Reminder_App
                 checkDesktopBox();
         }
 
-        private void watchForAlerts()
-        {
-
-        }
-
         private void chbx_Email_Click(object sender, EventArgs e)
         {
             checkEmailBox();
@@ -307,6 +308,11 @@ namespace Weather_Reminder_App
         {
             nextMode = Program.WindowMode.Select;
             this.Close();
+        }
+
+        private void displayAlerts()
+        {
+            Point StartingCoord = new Point(12, 445);
         }
     }
 }
