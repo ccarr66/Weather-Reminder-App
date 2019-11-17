@@ -72,6 +72,7 @@ namespace Weather_Reminder_App
 
         public void updateDisplay()
         {
+            endAlertEditing();
             lbl_DispLoc.Text = WeatherLookup.weatherInfo.Name;
             lbl_DispTemp.Text = Math.Round(WeatherLookup.weatherInfo.Main.Temperature.FahrenheitCurrent, 2).ToString() + "°F";
             if (WeatherLookup.weatherInfo.Weathers.Count > 0)
@@ -166,6 +167,7 @@ namespace Weather_Reminder_App
 
         private void openSettingsPane()
         {
+            endAlertEditing();
             settingsOpen = true;
 
             updateSettingsPane();
@@ -604,15 +606,24 @@ namespace Weather_Reminder_App
                 name = txtbx_NAL_Name.Text;
 
             string[] time;
-            int hr, min;
+            int hr = 0, min = 0;
             time = txtbx_NAL_Time.Text.Split(':');
             if (time.Length != 2)
                 addAlert = false;
             else
             {
                 if (Int32.TryParse(time[0], out hr) && Int32.TryParse(time[1], out min))
+                {
                     if (!(hr >= 0 && hr <= 23 && min >= 0 && min <= 59))
                         addAlert = false;
+                    else
+                    {
+                        if (cmbx_NAL_Time.SelectedItem.ToString() == "pm")
+                            hr += 12;
+                    }
+
+                }
+
             }
 
             string conditions = "";
@@ -620,10 +631,45 @@ namespace Weather_Reminder_App
                 conditions = "All,";
             else 
             {
-                
+                if (chbx_NAL_Atmosphere.Checked)
+                    conditions += "Atmos,";
+                if (chbx_NAL_Cold.Checked)
+                {
+                    int coldThreshold = 0;
+                    if (Int32.TryParse(txtbx_NAL_Cold.Text, out coldThreshold) && coldThreshold >= -100 && coldThreshold <= 330)
+                        conditions += "Cold(" + coldThreshold.ToString() + "),";
+                    else 
+                        addAlert = false;
+                }
+                if (chbx_NAL_Hot.Checked)
+                {
+                    int hotThreshold = 0;
+                    if (Int32.TryParse(txtbx_NAL_Hot.Text, out hotThreshold) && hotThreshold >= -100 && hotThreshold <= 330)
+                        conditions += "Hot(" + hotThreshold.ToString() + "),";
+                    else
+                        addAlert = false;
+                }
+                if (chbx_NAL_Rain.Checked)
+                    conditions += "Rain,";
+                if (chbx_NAL_Snow.Checked)
+                    conditions += "Snow,";
+                if(chbx_NAL_Thunder.Checked)
+                    conditions += "Thund,";
             }
 
-
+            if (addAlert)
+            {
+                conditions = conditions.Remove(conditions.Length - 1, 1);
+                bool valid;
+                UserAlert NUR = new UserAlert(name, hr.ToString(), min.ToString(), conditions, out valid);
+                if (valid)
+                    User.UserAlerts.Add(NUR);
+                removeAlertAddControls();
+                removeSaveButton();
+                User.saveUser();
+                displayAlerts();
+                alertAddingMode = false;
+            }
         }
 
         private void removeAlerts()
@@ -635,10 +681,31 @@ namespace Weather_Reminder_App
             }
 
             removeAlertDeleteControls();
+            removeSaveButton();
             User.saveUser();
             displayAlerts();
-            addAlertDeleteControls();
+            alertDeletingMode = false;
         }
 
+        private void endAlertEditing()
+        {
+            if(alertAddingMode)
+            {
+                removeAlertAddControls();
+                removeSaveButton();
+                User.saveUser();
+                displayAlerts();
+                alertAddingMode = false;
+            }
+            else if (alertDeletingMode)
+            {
+                removeAlertDeleteControls();
+                removeSaveButton();
+                User.saveUser();
+                displayAlerts();
+                alertDeletingMode = false;
+            }
+        }
     }
+
 }
