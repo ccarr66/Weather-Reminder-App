@@ -70,7 +70,7 @@ namespace Weather_Reminder_App
             this.btn_SwitchtoSwitchUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_SwitchtoSwitchUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_SwitchtoSwitchUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SwitchtoSwitchUser.Image = global::Weather_Reminder_App.Properties.Resources.group_profile_users_icon_icons_com_73540;
+            this.btn_SwitchtoSwitchUser.Image = global::Weather_Reminder_App.Properties.Resources.SwitchUsers;
             this.btn_SwitchtoSwitchUser.TabIndex = 0;
             this.btn_SwitchtoSwitchUser.TabStop = false;
             this.btn_SwitchtoSwitchUser.UseVisualStyleBackColor = true;

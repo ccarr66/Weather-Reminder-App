@@ -564,7 +564,7 @@
             this.saveAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.saveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.saveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.checkmark;
+            this.saveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.EditConfirm;
             this.saveAlerts.Location = new System.Drawing.Point(387, 382);
             this.saveAlerts.Name = "saveAlerts";
             this.saveAlerts.Size = new System.Drawing.Size(25, 25);
@@ -580,7 +580,7 @@
             this.btn_RemoveAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btn_RemoveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_RemoveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_RemoveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.minus;
+            this.btn_RemoveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.DeleteAlert;
             this.btn_RemoveAlerts.Location = new System.Drawing.Point(418, 382);
             this.btn_RemoveAlerts.Name = "btn_RemoveAlerts";
             this.btn_RemoveAlerts.Size = new System.Drawing.Size(25, 25);
@@ -592,7 +592,7 @@
             // btn_SwitchUsers
             // 
             this.btn_SwitchUsers.BackColor = System.Drawing.Color.Transparent;
-            this.btn_SwitchUsers.BackgroundImage = global::Weather_Reminder_App.Properties.Resources.group_profile_users_icon_icons_com_73540;
+            this.btn_SwitchUsers.BackgroundImage = global::Weather_Reminder_App.Properties.Resources.SwitchUsers;
             this.btn_SwitchUsers.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btn_SwitchUsers.FlatAppearance.BorderSize = 0;
             this.btn_SwitchUsers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
@@ -613,7 +613,7 @@
             this.btn_Settings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btn_Settings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Settings.Image = global::Weather_Reminder_App.Properties.Resources.Settings_Icon;
+            this.btn_Settings.Image = global::Weather_Reminder_App.Properties.Resources.Settings;
             this.btn_Settings.Location = new System.Drawing.Point(436, 12);
             this.btn_Settings.Name = "btn_Settings";
             this.btn_Settings.Size = new System.Drawing.Size(36, 36);
@@ -629,7 +629,7 @@
             this.btn_AddAlerts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btn_AddAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_AddAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_AddAlerts.Image = global::Weather_Reminder_App.Properties.Resources.plus;
+            this.btn_AddAlerts.Image = global::Weather_Reminder_App.Properties.Resources.AddAlert;
             this.btn_AddAlerts.Location = new System.Drawing.Point(449, 382);
             this.btn_AddAlerts.Name = "btn_AddAlerts";
             this.btn_AddAlerts.Size = new System.Drawing.Size(25, 25);
@@ -640,8 +640,8 @@
             // 
             // pctbx_WeatherIcon
             // 
-            this.pctbx_WeatherIcon.Image = global::Weather_Reminder_App.Properties.Resources.Large_W11;
-            this.pctbx_WeatherIcon.InitialImage = global::Weather_Reminder_App.Properties.Resources.Large_W11;
+            this.pctbx_WeatherIcon.Image = global::Weather_Reminder_App.Properties.Resources.Error;
+            this.pctbx_WeatherIcon.InitialImage = global::Weather_Reminder_App.Properties.Resources.Error;
             this.pctbx_WeatherIcon.Location = new System.Drawing.Point(71, 50);
             this.pctbx_WeatherIcon.Name = "pctbx_WeatherIcon";
             this.pctbx_WeatherIcon.Size = new System.Drawing.Size(111, 99);
