@@ -163,6 +163,26 @@ namespace Weather_Reminder_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap UserConfirm {
+            get {
+                object obj = ResourceManager.GetObject("UserConfirm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UserCreate {
+            get {
+                object obj = ResourceManager.GetObject("UserCreate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UserSelect {
             get {
                 object obj = ResourceManager.GetObject("UserSelect", resourceCulture);

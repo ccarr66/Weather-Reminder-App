@@ -136,8 +136,14 @@
   <data name="group-profile-users_icon-icons.com_73540" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\group-profile-users_icon-icons.com_73540.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="UserConfirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\UserConfirm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Settings Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Settings Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UserSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\UserSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit dots symbol small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\edit dots symbol small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,7 +154,7 @@
   <data name="checkmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UserSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\UserSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UserCreate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\UserCreate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

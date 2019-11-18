@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.lbl_DispLoc = new System.Windows.Forms.Label();
             this.lbl_DispTemp = new System.Windows.Forms.Label();
@@ -63,12 +64,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.saveAlerts = new System.Windows.Forms.Button();
-            this.btn_RemoveAlerts = new System.Windows.Forms.Button();
-            this.btn_SwitchUsers = new System.Windows.Forms.Button();
-            this.btn_Settings = new System.Windows.Forms.Button();
-            this.btn_AddAlerts = new System.Windows.Forms.Button();
-            this.pctbx_WeatherIcon = new System.Windows.Forms.PictureBox();
             this.txtbx_NAL_Name = new System.Windows.Forms.TextBox();
             this.txtbx_NAL_Time = new System.Windows.Forms.TextBox();
             this.cmbx_NAL_Time = new System.Windows.Forms.ComboBox();
@@ -81,6 +76,13 @@
             this.txtbx_NAL_Hot = new System.Windows.Forms.TextBox();
             this.txtbx_NAL_Cold = new System.Windows.Forms.TextBox();
             this.chbx_NAL_Cold = new System.Windows.Forms.CheckBox();
+            this.saveAlerts = new System.Windows.Forms.Button();
+            this.btn_RemoveAlerts = new System.Windows.Forms.Button();
+            this.btn_SwitchUsers = new System.Windows.Forms.Button();
+            this.btn_Settings = new System.Windows.Forms.Button();
+            this.btn_AddAlerts = new System.Windows.Forms.Button();
+            this.pctbx_WeatherIcon = new System.Windows.Forms.PictureBox();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnl_Settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbx_WeatherIcon)).BeginInit();
             this.SuspendLayout();
@@ -420,6 +422,131 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Conditions";
             // 
+            // txtbx_NAL_Name
+            // 
+            this.txtbx_NAL_Name.Location = new System.Drawing.Point(16, 439);
+            this.txtbx_NAL_Name.MaxLength = 10;
+            this.txtbx_NAL_Name.Name = "txtbx_NAL_Name";
+            this.txtbx_NAL_Name.Size = new System.Drawing.Size(87, 20);
+            this.txtbx_NAL_Name.TabIndex = 0;
+            this.txtbx_NAL_Name.TabStop = false;
+            // 
+            // txtbx_NAL_Time
+            // 
+            this.txtbx_NAL_Time.Location = new System.Drawing.Point(143, 439);
+            this.txtbx_NAL_Time.Name = "txtbx_NAL_Time";
+            this.txtbx_NAL_Time.Size = new System.Drawing.Size(51, 20);
+            this.txtbx_NAL_Time.TabIndex = 0;
+            this.txtbx_NAL_Time.TabStop = false;
+            // 
+            // cmbx_NAL_Time
+            // 
+            this.cmbx_NAL_Time.FormattingEnabled = true;
+            this.cmbx_NAL_Time.Items.AddRange(new object[] {
+            "am",
+            "pm"});
+            this.cmbx_NAL_Time.Location = new System.Drawing.Point(143, 465);
+            this.cmbx_NAL_Time.Name = "cmbx_NAL_Time";
+            this.cmbx_NAL_Time.Size = new System.Drawing.Size(39, 21);
+            this.cmbx_NAL_Time.TabIndex = 0;
+            this.cmbx_NAL_Time.TabStop = false;
+            // 
+            // chbx_NAL_All
+            // 
+            this.chbx_NAL_All.AutoSize = true;
+            this.chbx_NAL_All.Location = new System.Drawing.Point(207, 439);
+            this.chbx_NAL_All.Name = "chbx_NAL_All";
+            this.chbx_NAL_All.Size = new System.Drawing.Size(37, 17);
+            this.chbx_NAL_All.TabIndex = 0;
+            this.chbx_NAL_All.TabStop = false;
+            this.chbx_NAL_All.Text = "All";
+            this.chbx_NAL_All.UseVisualStyleBackColor = true;
+            this.chbx_NAL_All.CheckedChanged += new System.EventHandler(this.chbx_NAL_All_CheckedChanged);
+            // 
+            // chbx_NAL_Rain
+            // 
+            this.chbx_NAL_Rain.AutoSize = true;
+            this.chbx_NAL_Rain.Location = new System.Drawing.Point(207, 463);
+            this.chbx_NAL_Rain.Name = "chbx_NAL_Rain";
+            this.chbx_NAL_Rain.Size = new System.Drawing.Size(48, 17);
+            this.chbx_NAL_Rain.TabIndex = 0;
+            this.chbx_NAL_Rain.TabStop = false;
+            this.chbx_NAL_Rain.Text = "Rain";
+            this.chbx_NAL_Rain.UseVisualStyleBackColor = true;
+            // 
+            // chbx_NAL_Snow
+            // 
+            this.chbx_NAL_Snow.AutoSize = true;
+            this.chbx_NAL_Snow.Location = new System.Drawing.Point(207, 486);
+            this.chbx_NAL_Snow.Name = "chbx_NAL_Snow";
+            this.chbx_NAL_Snow.Size = new System.Drawing.Size(53, 17);
+            this.chbx_NAL_Snow.TabIndex = 0;
+            this.chbx_NAL_Snow.TabStop = false;
+            this.chbx_NAL_Snow.Text = "Snow";
+            this.chbx_NAL_Snow.UseVisualStyleBackColor = true;
+            // 
+            // chbx_NAL_Thunder
+            // 
+            this.chbx_NAL_Thunder.AutoSize = true;
+            this.chbx_NAL_Thunder.Location = new System.Drawing.Point(207, 509);
+            this.chbx_NAL_Thunder.Name = "chbx_NAL_Thunder";
+            this.chbx_NAL_Thunder.Size = new System.Drawing.Size(66, 17);
+            this.chbx_NAL_Thunder.TabIndex = 0;
+            this.chbx_NAL_Thunder.TabStop = false;
+            this.chbx_NAL_Thunder.Text = "Thunder";
+            this.chbx_NAL_Thunder.UseVisualStyleBackColor = true;
+            // 
+            // chbx_NAL_Atmosphere
+            // 
+            this.chbx_NAL_Atmosphere.AutoSize = true;
+            this.chbx_NAL_Atmosphere.Location = new System.Drawing.Point(207, 533);
+            this.chbx_NAL_Atmosphere.Name = "chbx_NAL_Atmosphere";
+            this.chbx_NAL_Atmosphere.Size = new System.Drawing.Size(82, 17);
+            this.chbx_NAL_Atmosphere.TabIndex = 0;
+            this.chbx_NAL_Atmosphere.TabStop = false;
+            this.chbx_NAL_Atmosphere.Text = "Atmosphere";
+            this.chbx_NAL_Atmosphere.UseVisualStyleBackColor = true;
+            // 
+            // chbx_NAL_Hot
+            // 
+            this.chbx_NAL_Hot.AutoSize = true;
+            this.chbx_NAL_Hot.Location = new System.Drawing.Point(296, 439);
+            this.chbx_NAL_Hot.Name = "chbx_NAL_Hot";
+            this.chbx_NAL_Hot.Size = new System.Drawing.Size(43, 17);
+            this.chbx_NAL_Hot.TabIndex = 0;
+            this.chbx_NAL_Hot.TabStop = false;
+            this.chbx_NAL_Hot.Text = "Hot";
+            this.chbx_NAL_Hot.UseVisualStyleBackColor = true;
+            // 
+            // txtbx_NAL_Hot
+            // 
+            this.txtbx_NAL_Hot.Location = new System.Drawing.Point(345, 436);
+            this.txtbx_NAL_Hot.MaxLength = 4;
+            this.txtbx_NAL_Hot.Name = "txtbx_NAL_Hot";
+            this.txtbx_NAL_Hot.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_NAL_Hot.TabIndex = 0;
+            this.txtbx_NAL_Hot.TabStop = false;
+            // 
+            // txtbx_NAL_Cold
+            // 
+            this.txtbx_NAL_Cold.Location = new System.Drawing.Point(345, 459);
+            this.txtbx_NAL_Cold.MaxLength = 4;
+            this.txtbx_NAL_Cold.Name = "txtbx_NAL_Cold";
+            this.txtbx_NAL_Cold.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_NAL_Cold.TabIndex = 0;
+            this.txtbx_NAL_Cold.TabStop = false;
+            // 
+            // chbx_NAL_Cold
+            // 
+            this.chbx_NAL_Cold.AutoSize = true;
+            this.chbx_NAL_Cold.Location = new System.Drawing.Point(296, 462);
+            this.chbx_NAL_Cold.Name = "chbx_NAL_Cold";
+            this.chbx_NAL_Cold.Size = new System.Drawing.Size(47, 17);
+            this.chbx_NAL_Cold.TabIndex = 0;
+            this.chbx_NAL_Cold.TabStop = false;
+            this.chbx_NAL_Cold.Text = "Cold";
+            this.chbx_NAL_Cold.UseVisualStyleBackColor = true;
+            // 
             // saveAlerts
             // 
             this.saveAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -511,129 +638,12 @@
             this.pctbx_WeatherIcon.TabIndex = 1;
             this.pctbx_WeatherIcon.TabStop = false;
             // 
-            // txtbx_NAL_Name
+            // trayIcon
             // 
-            this.txtbx_NAL_Name.Location = new System.Drawing.Point(16, 439);
-            this.txtbx_NAL_Name.MaxLength = 10;
-            this.txtbx_NAL_Name.Name = "txtbx_NAL_Name";
-            this.txtbx_NAL_Name.Size = new System.Drawing.Size(87, 20);
-            this.txtbx_NAL_Name.TabIndex = 0;
-            this.txtbx_NAL_Name.TabStop = false;
-            // 
-            // txtbx_NAL_Time
-            // 
-            this.txtbx_NAL_Time.Location = new System.Drawing.Point(143, 439);
-            this.txtbx_NAL_Time.Name = "txtbx_NAL_Time";
-            this.txtbx_NAL_Time.Size = new System.Drawing.Size(51, 20);
-            this.txtbx_NAL_Time.TabIndex = 0;
-            this.txtbx_NAL_Time.TabStop = false;
-            // 
-            // cmbx_NAL_Time
-            // 
-            this.cmbx_NAL_Time.FormattingEnabled = true;
-            this.cmbx_NAL_Time.Items.AddRange(new object[] {
-            "am",
-            "pm"});
-            this.cmbx_NAL_Time.Location = new System.Drawing.Point(143, 465);
-            this.cmbx_NAL_Time.Name = "cmbx_NAL_Time";
-            this.cmbx_NAL_Time.Size = new System.Drawing.Size(29, 21);
-            this.cmbx_NAL_Time.TabIndex = 0;
-            this.cmbx_NAL_Time.TabStop = false;
-            // 
-            // chbx_NAL_All
-            // 
-            this.chbx_NAL_All.AutoSize = true;
-            this.chbx_NAL_All.Location = new System.Drawing.Point(207, 439);
-            this.chbx_NAL_All.Name = "chbx_NAL_All";
-            this.chbx_NAL_All.Size = new System.Drawing.Size(37, 17);
-            this.chbx_NAL_All.TabIndex = 0;
-            this.chbx_NAL_All.TabStop = false;
-            this.chbx_NAL_All.Text = "All";
-            this.chbx_NAL_All.UseVisualStyleBackColor = true;
-            // 
-            // chbx_NAL_Rain
-            // 
-            this.chbx_NAL_Rain.AutoSize = true;
-            this.chbx_NAL_Rain.Location = new System.Drawing.Point(207, 463);
-            this.chbx_NAL_Rain.Name = "chbx_NAL_Rain";
-            this.chbx_NAL_Rain.Size = new System.Drawing.Size(48, 17);
-            this.chbx_NAL_Rain.TabIndex = 0;
-            this.chbx_NAL_Rain.TabStop = false;
-            this.chbx_NAL_Rain.Text = "Rain";
-            this.chbx_NAL_Rain.UseVisualStyleBackColor = true;
-            // 
-            // chbx_NAL_Snow
-            // 
-            this.chbx_NAL_Snow.AutoSize = true;
-            this.chbx_NAL_Snow.Location = new System.Drawing.Point(207, 486);
-            this.chbx_NAL_Snow.Name = "chbx_NAL_Snow";
-            this.chbx_NAL_Snow.Size = new System.Drawing.Size(53, 17);
-            this.chbx_NAL_Snow.TabIndex = 0;
-            this.chbx_NAL_Snow.TabStop = false;
-            this.chbx_NAL_Snow.Text = "Snow";
-            this.chbx_NAL_Snow.UseVisualStyleBackColor = true;
-            // 
-            // chbx_NAL_Thunder
-            // 
-            this.chbx_NAL_Thunder.AutoSize = true;
-            this.chbx_NAL_Thunder.Location = new System.Drawing.Point(207, 509);
-            this.chbx_NAL_Thunder.Name = "chbx_NAL_Thunder";
-            this.chbx_NAL_Thunder.Size = new System.Drawing.Size(66, 17);
-            this.chbx_NAL_Thunder.TabIndex = 0;
-            this.chbx_NAL_Thunder.TabStop = false;
-            this.chbx_NAL_Thunder.Text = "Thunder";
-            this.chbx_NAL_Thunder.UseVisualStyleBackColor = true;
-            // 
-            // chbx_NAL_Atmosphere
-            // 
-            this.chbx_NAL_Atmosphere.AutoSize = true;
-            this.chbx_NAL_Atmosphere.Location = new System.Drawing.Point(207, 533);
-            this.chbx_NAL_Atmosphere.Name = "chbx_NAL_Atmosphere";
-            this.chbx_NAL_Atmosphere.Size = new System.Drawing.Size(82, 17);
-            this.chbx_NAL_Atmosphere.TabIndex = 0;
-            this.chbx_NAL_Atmosphere.TabStop = false;
-            this.chbx_NAL_Atmosphere.Text = "Atmosphere";
-            this.chbx_NAL_Atmosphere.UseVisualStyleBackColor = true;
-            // 
-            // chbx_NAL_Hot
-            // 
-            this.chbx_NAL_Hot.AutoSize = true;
-            this.chbx_NAL_Hot.Location = new System.Drawing.Point(296, 439);
-            this.chbx_NAL_Hot.Name = "chbx_NAL_Hot";
-            this.chbx_NAL_Hot.Size = new System.Drawing.Size(43, 17);
-            this.chbx_NAL_Hot.TabIndex = 0;
-            this.chbx_NAL_Hot.TabStop = false;
-            this.chbx_NAL_Hot.Text = "Hot";
-            this.chbx_NAL_Hot.UseVisualStyleBackColor = true;
-            // 
-            // txtbx_NAL_Hot
-            // 
-            this.txtbx_NAL_Hot.Location = new System.Drawing.Point(345, 436);
-            this.txtbx_NAL_Hot.MaxLength = 4;
-            this.txtbx_NAL_Hot.Name = "txtbx_NAL_Hot";
-            this.txtbx_NAL_Hot.Size = new System.Drawing.Size(100, 20);
-            this.txtbx_NAL_Hot.TabIndex = 0;
-            this.txtbx_NAL_Hot.TabStop = false;
-            // 
-            // txtbx_NAL_Cold
-            // 
-            this.txtbx_NAL_Cold.Location = new System.Drawing.Point(345, 459);
-            this.txtbx_NAL_Cold.MaxLength = 4;
-            this.txtbx_NAL_Cold.Name = "txtbx_NAL_Cold";
-            this.txtbx_NAL_Cold.Size = new System.Drawing.Size(100, 20);
-            this.txtbx_NAL_Cold.TabIndex = 0;
-            this.txtbx_NAL_Cold.TabStop = false;
-            // 
-            // chbx_NAL_Cold
-            // 
-            this.chbx_NAL_Cold.AutoSize = true;
-            this.chbx_NAL_Cold.Location = new System.Drawing.Point(296, 462);
-            this.chbx_NAL_Cold.Name = "chbx_NAL_Cold";
-            this.chbx_NAL_Cold.Size = new System.Drawing.Size(47, 17);
-            this.chbx_NAL_Cold.TabIndex = 0;
-            this.chbx_NAL_Cold.TabStop = false;
-            this.chbx_NAL_Cold.Text = "Cold";
-            this.chbx_NAL_Cold.UseVisualStyleBackColor = true;
+            this.trayIcon.BalloonTipTitle = "Weather Alerts";
+            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
+            this.trayIcon.Text = "Weather Alerts";
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
             // 
             // MainWindow
             // 
@@ -685,7 +695,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
-            this.Text = "Weather Alert App";
+            this.Text = "Weather Alerts";
+            this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.pnl_Settings.ResumeLayout(false);
             this.pnl_Settings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbx_WeatherIcon)).EndInit();
@@ -748,6 +759,7 @@
         private System.Windows.Forms.TextBox txtbx_NAL_Hot;
         private System.Windows.Forms.TextBox txtbx_NAL_Cold;
         private System.Windows.Forms.CheckBox chbx_NAL_Cold;
+        private System.Windows.Forms.NotifyIcon trayIcon;
     }
 }
 

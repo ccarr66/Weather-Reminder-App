@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net.Http;
 using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 using System.Globalization;
 
 namespace Weather_Reminder_App
@@ -39,7 +40,6 @@ namespace Weather_Reminder_App
 
         private static UserAlert nextAlert;
         private static System.Windows.Forms.Timer alertTimer;
-
 
         public MainWindow()
         {
@@ -331,6 +331,7 @@ namespace Weather_Reminder_App
         {
             nextMode = Program.WindowMode.Select;
             alertTimer = new System.Windows.Forms.Timer();
+            User.determineAvailableUsers();
             this.Close();
         }
 
@@ -353,7 +354,7 @@ namespace Weather_Reminder_App
                 alertDisplay.Add(new Label());
                 alertDisplay[index].TabIndex = 0;
                 alertDisplay[index].Name = index.ToString();
-                string time = (al.hour % 12).ToString() + ':' + (al.minute).ToString() + ((al.hour > 12) ? "pm" : "am");
+                string time = ((al.hour == 0) ? "12" : ((al.hour > 12) ? (al.hour - 12).ToString() : al.hour.ToString())) + ':' + (al.minute.ToString().Length == 1 ? "0" : "") + (al.minute).ToString() + ((al.hour >= 12) ? " pm" : " am");
                 alertDisplay[index].Text = time;
                 alertDisplay[index].AutoSize = true;
                 alertDisplay[index++].Location = new Point(columnXCoords[col++], startingYCoord + rowSeparation * row);
@@ -619,12 +620,14 @@ namespace Weather_Reminder_App
                 {
                     if (Int32.TryParse(time[0], out hr) && Int32.TryParse(time[1], out min))
                     {
-                        if (!(hr >= 0 && hr <= 23 && min >= 0 && min <= 59))
+                        if (!(hr >= 0 && hr <= 12 && min >= 0 && min <= 59))
                             addAlert = false;
                         else
                         {
-                            if (cmbx_NAL_Time.SelectedItem.ToString() == "pm")
+                            if (cmbx_NAL_Time.SelectedItem.ToString() == "pm" && hr != 12)
                                 hr += 12;
+                            else if (cmbx_NAL_Time.SelectedItem.ToString() == "am" && hr == 12)
+                                hr = 0;
                         }
 
                     }
@@ -638,28 +641,29 @@ namespace Weather_Reminder_App
                 {
                     if (chbx_NAL_Atmosphere.Checked)
                         conditions += "Atmos,";
-                    if (chbx_NAL_Cold.Checked)
-                    {
-                        int coldThreshold = 0;
-                        if (Int32.TryParse(txtbx_NAL_Cold.Text, out coldThreshold) && coldThreshold >= -100 && coldThreshold <= 330)
-                            conditions += "Cold(" + coldThreshold.ToString() + "),";
-                        else
-                            addAlert = false;
-                    }
-                    if (chbx_NAL_Hot.Checked)
-                    {
-                        int hotThreshold = 0;
-                        if (Int32.TryParse(txtbx_NAL_Hot.Text, out hotThreshold) && hotThreshold >= -100 && hotThreshold <= 330)
-                            conditions += "Hot(" + hotThreshold.ToString() + "),";
-                        else
-                            addAlert = false;
-                    }
                     if (chbx_NAL_Rain.Checked)
                         conditions += "Rain,";
                     if (chbx_NAL_Snow.Checked)
                         conditions += "Snow,";
                     if (chbx_NAL_Thunder.Checked)
                         conditions += "Thund,";
+                }
+
+                if (chbx_NAL_Cold.Checked)
+                {
+                    int coldThreshold = 0;
+                    if (Int32.TryParse(txtbx_NAL_Cold.Text, out coldThreshold) && coldThreshold >= -100 && coldThreshold <= 330)
+                        conditions += "Cold(" + coldThreshold.ToString() + "),";
+                    else
+                        addAlert = false;
+                }
+                if (chbx_NAL_Hot.Checked)
+                {
+                    int hotThreshold = 0;
+                    if (Int32.TryParse(txtbx_NAL_Hot.Text, out hotThreshold) && hotThreshold >= -100 && hotThreshold <= 330)
+                        conditions += "Hot(" + hotThreshold.ToString() + "),";
+                    else
+                        addAlert = false;
                 }
 
                 if (addAlert)
@@ -718,27 +722,43 @@ namespace Weather_Reminder_App
             alertTimer = new System.Windows.Forms.Timer();
             if (User.UserAlerts.Count > 0)
             {
-                DateTime now = DateTime.Now;
-                int hour = now.Hour;
-                int min = now.Minute;
-                int timeInMin = min * 60 + hour * 3600;
-                KeyValuePair<int, UserAlert> distToNextAlert = new KeyValuePair<int, UserAlert>(24 * 60, null);
-
-                foreach (UserAlert al in User.UserAlerts)
+                int nextAlertTime = 1000;
+                bool validAlert = false;
+                do
                 {
-                    int distance = (al.minute * 60 + al.hour * 3600) - timeInMin;
-                    if (distance < distToNextAlert.Key)
-                    {
-                        if(distance < 0)
-                            distToNextAlert = new KeyValuePair<int, UserAlert>(24*3600+distance, al);
-                        else
-                            distToNextAlert = new KeyValuePair<int, UserAlert>(distance, al);
-                    }
-                }
 
-                nextAlert = distToNextAlert.Value;
-                alertTimer.Tick += new EventHandler(alertEvent);
-                alertTimer.Interval = (distToNextAlert.Key) * 1000;
+                    DateTime now = DateTime.Now;
+                    int hour = now.Hour;
+                    int min = now.Minute;
+                    int sec = now.Second;
+                    int timeInSec = min * 60 + hour * 3600 + sec;
+                    KeyValuePair<int, UserAlert> distToNextAlert = new KeyValuePair<int, UserAlert>(24 * 3600, null);
+
+                    foreach (UserAlert al in User.UserAlerts)
+                    {
+                        int distance = (al.minute * 60 + al.hour * 3600) - timeInSec;
+                        if (distance < distToNextAlert.Key)
+                        {
+                            if (distance < 0)
+                                distToNextAlert = new KeyValuePair<int, UserAlert>(24 * 3600 + distance, al);
+                            else
+                                distToNextAlert = new KeyValuePair<int, UserAlert>(distance, al);
+                        }
+                    }
+
+                    nextAlert = distToNextAlert.Value;
+                    alertTimer.Tick += new EventHandler(alertEvent);
+                    nextAlertTime = (distToNextAlert.Key) * 1000;
+
+                    if (nextAlertTime < 1000)
+                        validAlert = false;
+                    else
+                        validAlert = true;
+
+
+                } while (!validAlert);
+
+                alertTimer.Interval = nextAlertTime;
                 alertTimer.Start();
             }
 
@@ -747,36 +767,226 @@ namespace Weather_Reminder_App
         private void alertEvent(object source, EventArgs e)
         {
             alertTimer.Stop();
-
-            if (User.AlertPreference == UserPreference.Both)
+            restoreWindow();
+            bool alertNeeded = false;
+            string alertMessage = "";
+            bool alertMessageCreated = getAlertMessage(out alertNeeded, out alertMessage);
+            if (alertNeeded && alertMessageCreated)
             {
-                desktopAlert();
-                emailAlert();
+                if (User.AlertPreference == UserPreference.Both)
+                {
+                    desktopAlert(alertMessage);
+                    emailAlert(alertMessage);
+                }
+                else if (User.AlertPreference == UserPreference.Email)
+                    emailAlert(alertMessage);
+                else
+                    desktopAlert(alertMessage);
             }
-            else if (User.AlertPreference == UserPreference.Email)
-                emailAlert();
+            setNextAlert();
+        }
+
+        private void desktopAlert(string alertMessage)
+        {
+            MessageBox.Show(alertMessage, "Weather Reminder", MessageBoxButtons.OK);
+        }
+
+        private void emailAlert(string alertMessage)
+        {
+            ;
+        }
+
+        private bool getAlertMessage(out bool alertNeeded, out string alertMessage)
+        {
+            alertNeeded = false;
+            alertMessage = "Hello " + User.CurrentUser + "!" + System.Environment.NewLine;
+
+            bool hot = false, cold = false, all = false, rain = false, thunder = false, snow = false, atmosphere = false;
+            int hotThresh = 0, coldThresh = 0;
+
+            foreach (string cond in nextAlert.conditions)
+            {
+                switch (cond)
+                {
+                    case "All":
+                        {
+                            all = true;
+                            break;
+                        }
+                    case "Rain":
+                        {
+                            rain = true;
+                            break;
+                        }
+                    case "Thund":
+                        {
+                            thunder = true;
+                            break;
+                        }
+                    case "Snow":
+                        {
+                            snow = true;
+                            break;
+                        }
+                    case "Atmos":
+                        {
+                            atmosphere = true;
+                            break;
+                        }
+                    default:
+                        {
+                            if (cond.StartsWith("Hot"))
+                            {
+                                string resultString = Regex.Match(cond, @"\d+").Value;
+                                if (!Int32.TryParse(resultString, out hotThresh))
+                                    return false;
+                                else
+                                    hot = true;
+                            }
+                            else if (cond.StartsWith("Cold"))
+                            {
+                                string resultString = Regex.Match(cond, @"\d+").Value;
+                                if (!Int32.TryParse(resultString, out coldThresh))
+                                    return false;
+                                else
+                                    cold = true;
+                            }
+                            else
+                                return false;
+
+                            break;
+                        }
+                }
+            }
+
+
+            int weatherGroup = (int)Math.Floor((decimal)WeatherLookup.weatherInfo.Weathers[0].ID / 100);
+
+            if (weatherGroup != 7)
+            {
+                alertMessage += "It is expected to be a " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
+                + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+            }
             else
-                desktopAlert();
-        }
-
-        private void desktopAlert()
-        {
-            bool alertNeeded?
-            string greeting = "Hello " + User.CurrentUser + "!" + System.Environment.NewLine;
-            if (WeatherLookup.weatherInfo.Weathers.Count > 0)
             {
-                int weathertype = (int)Math.Floor((decimal)(WeatherLookup.weatherInfo.Weathers[0].ID / 100));
-                if (weathertype == 2 && nextAlert.conditions)
-
+                alertMessage += "today there will be a high of "
+                + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
             }
 
-            MessageBox.Show()
+            if ((hot && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum > hotThresh))
+            {
+                alertMessage += "Make sure to wear light clothing today! It'll be hot...";
+                alertNeeded = true;
+            }
+            else if ((cold && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum < coldThresh))
+            {
+                alertMessage += "It'll be cold today, make sure to wear warm clothes...";
+                alertNeeded = true;
+            }
+
+            switch (weatherGroup)
+            {
+                case 2:
+                    {
+                        if (thunder || all)
+                        {
+                            alertMessage += "There's going to be a thunderstorm so don't forget rain-resistant clothing and stay safe.";
+                            alertNeeded = true;
+                        }
+                        break;
+                    }
+                case 3:
+                case 5:
+                    {
+                        if (rain || all)
+                        {
+                            alertMessage += "It's going to rain so don't forget rain-resistant clothing and to stay safe.";
+                            alertNeeded = true;
+                        }
+                        break;
+                    }
+                case 6:
+                    {
+                        if (snow || all)
+                        {
+                            alertMessage += "It's going to snow so don't forget warm, water-proof clothing and to stay safe." + System.Environment.NewLine + "If you're driving don't forget your snow chains!";
+                            alertNeeded = true;
+                        }
+                        break;
+                    }
+                case 7:
+                    {
+                        if (atmosphere || all)
+                        {
+                            alertMessage += System.Environment.NewLine + "Atmospheric Warning: " + WeatherLookup.weatherInfo.Weathers[0].Description;
+                            alertNeeded = true;
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+
+            return true;
         }
 
-        private void emailAlert()
+        private void chbx_NAL_All_CheckedChanged(object sender, EventArgs e)
         {
+            if(chbx_NAL_All.Checked)
+            {
+                chbx_NAL_Atmosphere.Checked = false;
+                chbx_NAL_Atmosphere.Visible = false;
+                chbx_NAL_Atmosphere.Enabled = false;
+                chbx_NAL_Rain.Checked = false;
+                chbx_NAL_Rain.Visible = false;
+                chbx_NAL_Rain.Enabled = false;
+                chbx_NAL_Snow.Checked = false;
+                chbx_NAL_Snow.Visible = false;
+                chbx_NAL_Snow.Enabled = false;
+                chbx_NAL_Thunder.Checked = false;
+                chbx_NAL_Thunder.Visible = false;
+                chbx_NAL_Thunder.Enabled = false;
+            }
+            else
+            {
+                chbx_NAL_Atmosphere.Checked = true;
+                chbx_NAL_Atmosphere.Visible = true;
+                chbx_NAL_Atmosphere.Enabled = true;
+                chbx_NAL_Rain.Checked = true;
+                chbx_NAL_Rain.Visible = true;
+                chbx_NAL_Rain.Enabled = true;
+                chbx_NAL_Snow.Checked = true;
+                chbx_NAL_Snow.Visible = true;
+                chbx_NAL_Snow.Enabled = true;
+                chbx_NAL_Thunder.Checked = true;
+                chbx_NAL_Thunder.Visible = true;
+                chbx_NAL_Thunder.Enabled = true;
+            }
+        }
+
+        private void MainWindow_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                trayIcon.Visible = true;
+                this.ShowInTaskbar = false;
+            }
 
         }
+
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            restoreWindow();
+        }
+
+        private void restoreWindow()
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            trayIcon.Visible = false;
+        }
+
     }
 
 }

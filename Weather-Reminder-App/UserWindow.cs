@@ -64,10 +64,16 @@ namespace Weather_Reminder_App
             this.btn_SwitchtoSwitchUser.Location = new System.Drawing.Point(235, 12);
             this.btn_SwitchtoSwitchUser.Name = "btn_SwitchtoSwitchUser";
             this.btn_SwitchtoSwitchUser.Size = new System.Drawing.Size(88, 76);
-            this.btn_SwitchtoSwitchUser.TabIndex = 3;
-            this.btn_SwitchtoSwitchUser.Text = "Choose Existing User";
-            this.btn_SwitchtoSwitchUser.UseVisualStyleBackColor = true;
             this.btn_SwitchtoSwitchUser.Click += new System.EventHandler(this.btn_SwitchtoSwitchUser_Click);
+            this.btn_SwitchtoSwitchUser.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_SwitchtoSwitchUser.FlatAppearance.BorderSize = 0;
+            this.btn_SwitchtoSwitchUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SwitchtoSwitchUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SwitchtoSwitchUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SwitchtoSwitchUser.Image = global::Weather_Reminder_App.Properties.Resources.group_profile_users_icon_icons_com_73540;
+            this.btn_SwitchtoSwitchUser.TabIndex = 0;
+            this.btn_SwitchtoSwitchUser.TabStop = false;
+            this.btn_SwitchtoSwitchUser.UseVisualStyleBackColor = true;
             // 
             // btn_CreateUser
             // 
@@ -75,10 +81,16 @@ namespace Weather_Reminder_App
             this.btn_CreateUser.Location = new System.Drawing.Point(235, 142);
             this.btn_CreateUser.Name = "btn_CreateUser";
             this.btn_CreateUser.Size = new System.Drawing.Size(88, 76);
-            this.btn_CreateUser.TabIndex = 2;
-            this.btn_CreateUser.Text = "Create User";
-            this.btn_CreateUser.UseVisualStyleBackColor = true;
             this.btn_CreateUser.Click += new System.EventHandler(this.btn_CreateUser_Click);
+            this.btn_CreateUser.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_CreateUser.FlatAppearance.BorderSize = 0;
+            this.btn_CreateUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_CreateUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_CreateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CreateUser.Image = global::Weather_Reminder_App.Properties.Resources.UserCreate;
+            this.btn_CreateUser.TabIndex = 0;
+            this.btn_CreateUser.TabStop = false;
+            this.btn_CreateUser.UseVisualStyleBackColor = true;
             // 
             // lbl_Username
             // 
@@ -146,8 +158,8 @@ namespace Weather_Reminder_App
             this.Controls.Add(this.txtbx_EmailAddr);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "User";
-            this.Text = "User";
+            this.Name = "Weather Alerts User";
+            this.Text = "Weather Alerts User";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -169,10 +181,16 @@ namespace Weather_Reminder_App
             this.btn_SwitchtoCreateUser.Location = new System.Drawing.Point(235, 12);
             this.btn_SwitchtoCreateUser.Name = "btn_SwitchtoCreateUser";
             this.btn_SwitchtoCreateUser.Size = new System.Drawing.Size(88, 76);
-            this.btn_SwitchtoCreateUser.TabIndex = 0;
-            this.btn_SwitchtoCreateUser.Text = "Create New User";
-            this.btn_SwitchtoCreateUser.UseVisualStyleBackColor = true;
             this.btn_SwitchtoCreateUser.Click += new System.EventHandler(this.btn_SwitchtoCreateUser_Click);
+            this.btn_SwitchtoCreateUser.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_SwitchtoCreateUser.FlatAppearance.BorderSize = 0;
+            this.btn_SwitchtoCreateUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SwitchtoCreateUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
+            this.btn_SwitchtoCreateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SwitchtoCreateUser.Image = global::Weather_Reminder_App.Properties.Resources.UserCreate;
+            this.btn_SwitchtoCreateUser.TabIndex = 0;
+            this.btn_SwitchtoCreateUser.TabStop = false;
+            this.btn_SwitchtoCreateUser.UseVisualStyleBackColor = true;
             // 
             // btn_SelectUser
             // 
@@ -186,7 +204,7 @@ namespace Weather_Reminder_App
             this.btn_SelectUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_SelectUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_SelectUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SelectUser.Image = global::Weather_Reminder_App.Properties.Resources.UserSelect;
+            this.btn_SelectUser.Image = global::Weather_Reminder_App.Properties.Resources.UserConfirm;
             this.btn_SelectUser.TabIndex = 0;
             this.btn_SelectUser.TabStop = false;
             this.btn_SelectUser.UseVisualStyleBackColor = true;
