@@ -61,9 +61,9 @@
             this.txtbx_SettUser = new System.Windows.Forms.TextBox();
             this.lbl_SettUser = new System.Windows.Forms.Label();
             this.lbl_Settings = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lbl_AlertName = new System.Windows.Forms.Label();
+            this.lbl_AlertTime = new System.Windows.Forms.Label();
+            this.lbl_AlertConditions = new System.Windows.Forms.Label();
             this.txtbx_NAL_Name = new System.Windows.Forms.TextBox();
             this.txtbx_NAL_Time = new System.Windows.Forms.TextBox();
             this.cmbx_NAL_Time = new System.Windows.Forms.ComboBox();
@@ -120,18 +120,20 @@
             // lbl_LHumidity
             // 
             this.lbl_LHumidity.AutoSize = true;
+            this.lbl_LHumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LHumidity.Location = new System.Drawing.Point(90, 258);
             this.lbl_LHumidity.Name = "lbl_LHumidity";
-            this.lbl_LHumidity.Size = new System.Drawing.Size(50, 13);
+            this.lbl_LHumidity.Size = new System.Drawing.Size(72, 16);
             this.lbl_LHumidity.TabIndex = 0;
             this.lbl_LHumidity.Text = "Humidity:";
             // 
             // lbl_LCoords
             // 
             this.lbl_LCoords.AutoSize = true;
+            this.lbl_LCoords.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LCoords.Location = new System.Drawing.Point(90, 228);
             this.lbl_LCoords.Name = "lbl_LCoords";
-            this.lbl_LCoords.Size = new System.Drawing.Size(66, 13);
+            this.lbl_LCoords.Size = new System.Drawing.Size(96, 16);
             this.lbl_LCoords.TabIndex = 0;
             this.lbl_LCoords.Text = "Coordinates:";
             // 
@@ -176,72 +178,80 @@
             // lbl_LWindSp
             // 
             this.lbl_LWindSp.AutoSize = true;
+            this.lbl_LWindSp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LWindSp.Location = new System.Drawing.Point(90, 288);
             this.lbl_LWindSp.Name = "lbl_LWindSp";
-            this.lbl_LWindSp.Size = new System.Drawing.Size(69, 13);
+            this.lbl_LWindSp.Size = new System.Drawing.Size(97, 16);
             this.lbl_LWindSp.TabIndex = 0;
             this.lbl_LWindSp.Text = "Wind Speed:";
             // 
             // lbl_LWindDir
             // 
             this.lbl_LWindDir.AutoSize = true;
-            this.lbl_LWindDir.Location = new System.Drawing.Point(235, 288);
+            this.lbl_LWindDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_LWindDir.Location = new System.Drawing.Point(280, 291);
             this.lbl_LWindDir.Name = "lbl_LWindDir";
-            this.lbl_LWindDir.Size = new System.Drawing.Size(52, 13);
+            this.lbl_LWindDir.Size = new System.Drawing.Size(74, 16);
             this.lbl_LWindDir.TabIndex = 0;
             this.lbl_LWindDir.Text = "Direction:";
             // 
             // lbl_DispCoords
             // 
             this.lbl_DispCoords.AutoSize = true;
-            this.lbl_DispCoords.Location = new System.Drawing.Point(165, 228);
+            this.lbl_DispCoords.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DispCoords.Location = new System.Drawing.Point(192, 228);
             this.lbl_DispCoords.Name = "lbl_DispCoords";
-            this.lbl_DispCoords.Size = new System.Drawing.Size(52, 13);
+            this.lbl_DispCoords.Size = new System.Drawing.Size(65, 16);
             this.lbl_DispCoords.TabIndex = 0;
             this.lbl_DispCoords.Text = "(ERROR)";
             // 
             // lbl_DispHumidity
             // 
             this.lbl_DispHumidity.AutoSize = true;
-            this.lbl_DispHumidity.Location = new System.Drawing.Point(165, 258);
+            this.lbl_DispHumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DispHumidity.Location = new System.Drawing.Point(192, 258);
             this.lbl_DispHumidity.Name = "lbl_DispHumidity";
-            this.lbl_DispHumidity.Size = new System.Drawing.Size(52, 13);
+            this.lbl_DispHumidity.Size = new System.Drawing.Size(65, 16);
             this.lbl_DispHumidity.TabIndex = 0;
             this.lbl_DispHumidity.Text = "(ERROR)";
             // 
             // lbl_DispWindSp
             // 
             this.lbl_DispWindSp.AutoSize = true;
-            this.lbl_DispWindSp.Location = new System.Drawing.Point(165, 288);
+            this.lbl_DispWindSp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DispWindSp.Location = new System.Drawing.Point(192, 288);
             this.lbl_DispWindSp.Name = "lbl_DispWindSp";
-            this.lbl_DispWindSp.Size = new System.Drawing.Size(52, 13);
+            this.lbl_DispWindSp.Size = new System.Drawing.Size(65, 16);
             this.lbl_DispWindSp.TabIndex = 0;
             this.lbl_DispWindSp.Text = "(ERROR)";
             // 
             // lbl_DispWindDir
             // 
             this.lbl_DispWindDir.AutoSize = true;
-            this.lbl_DispWindDir.Location = new System.Drawing.Point(293, 288);
+            this.lbl_DispWindDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DispWindDir.Location = new System.Drawing.Point(360, 291);
             this.lbl_DispWindDir.Name = "lbl_DispWindDir";
-            this.lbl_DispWindDir.Size = new System.Drawing.Size(52, 13);
+            this.lbl_DispWindDir.Size = new System.Drawing.Size(65, 16);
             this.lbl_DispWindDir.TabIndex = 0;
             this.lbl_DispWindDir.Text = "(ERROR)";
             // 
             // lbl_LCloud
             // 
             this.lbl_LCloud.AutoSize = true;
+            this.lbl_LCloud.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LCloud.Location = new System.Drawing.Point(90, 318);
             this.lbl_LCloud.Name = "lbl_LCloud";
-            this.lbl_LCloud.Size = new System.Drawing.Size(42, 13);
+            this.lbl_LCloud.Size = new System.Drawing.Size(60, 16);
             this.lbl_LCloud.TabIndex = 0;
             this.lbl_LCloud.Text = "Clouds:";
             // 
             // lbl_DispClouds
             // 
             this.lbl_DispClouds.AutoSize = true;
-            this.lbl_DispClouds.Location = new System.Drawing.Point(165, 318);
+            this.lbl_DispClouds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DispClouds.Location = new System.Drawing.Point(192, 318);
             this.lbl_DispClouds.Name = "lbl_DispClouds";
-            this.lbl_DispClouds.Size = new System.Drawing.Size(52, 13);
+            this.lbl_DispClouds.Size = new System.Drawing.Size(65, 16);
             this.lbl_DispClouds.TabIndex = 0;
             this.lbl_DispClouds.Text = "(ERROR)";
             // 
@@ -272,12 +282,12 @@
             this.pnl_Settings.Controls.Add(this.lbl_Settings);
             this.pnl_Settings.Location = new System.Drawing.Point(492, 13);
             this.pnl_Settings.Name = "pnl_Settings";
-            this.pnl_Settings.Size = new System.Drawing.Size(180, 586);
+            this.pnl_Settings.Size = new System.Drawing.Size(180, 550);
             this.pnl_Settings.TabIndex = 0;
             // 
             // btn_SaveSett
             // 
-            this.btn_SaveSett.Location = new System.Drawing.Point(3, 516);
+            this.btn_SaveSett.Location = new System.Drawing.Point(3, 480);
             this.btn_SaveSett.Name = "btn_SaveSett";
             this.btn_SaveSett.Size = new System.Drawing.Size(172, 65);
             this.btn_SaveSett.TabIndex = 0;
@@ -392,35 +402,35 @@
             this.lbl_Settings.Text = "Settings";
             this.lbl_Settings.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label3
+            // lbl_AlertName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 416);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Name";
+            this.lbl_AlertName.AutoSize = true;
+            this.lbl_AlertName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertName.Location = new System.Drawing.Point(12, 416);
+            this.lbl_AlertName.Name = "lbl_AlertName";
+            this.lbl_AlertName.Size = new System.Drawing.Size(51, 20);
+            this.lbl_AlertName.TabIndex = 0;
+            this.lbl_AlertName.Text = "Name";
             // 
-            // label4
+            // lbl_AlertTime
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(139, 416);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Time";
+            this.lbl_AlertTime.AutoSize = true;
+            this.lbl_AlertTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertTime.Location = new System.Drawing.Point(139, 416);
+            this.lbl_AlertTime.Name = "lbl_AlertTime";
+            this.lbl_AlertTime.Size = new System.Drawing.Size(43, 20);
+            this.lbl_AlertTime.TabIndex = 0;
+            this.lbl_AlertTime.Text = "Time";
             // 
-            // label7
+            // lbl_AlertConditions
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(203, 416);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Conditions";
+            this.lbl_AlertConditions.AutoSize = true;
+            this.lbl_AlertConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertConditions.Location = new System.Drawing.Point(203, 416);
+            this.lbl_AlertConditions.Name = "lbl_AlertConditions";
+            this.lbl_AlertConditions.Size = new System.Drawing.Size(84, 20);
+            this.lbl_AlertConditions.TabIndex = 0;
+            this.lbl_AlertConditions.Text = "Conditions";
             // 
             // txtbx_NAL_Name
             // 
@@ -630,12 +640,12 @@
             // 
             // pctbx_WeatherIcon
             // 
-            this.pctbx_WeatherIcon.Image = global::Weather_Reminder_App.Properties.Resources.small_icon;
+            this.pctbx_WeatherIcon.Image = global::Weather_Reminder_App.Properties.Resources.Large_W11;
             this.pctbx_WeatherIcon.InitialImage = global::Weather_Reminder_App.Properties.Resources.Large_W11;
             this.pctbx_WeatherIcon.Location = new System.Drawing.Point(71, 50);
             this.pctbx_WeatherIcon.Name = "pctbx_WeatherIcon";
-            this.pctbx_WeatherIcon.Size = new System.Drawing.Size(99, 92);
-            this.pctbx_WeatherIcon.TabIndex = 1;
+            this.pctbx_WeatherIcon.Size = new System.Drawing.Size(111, 99);
+            this.pctbx_WeatherIcon.TabIndex = 0;
             this.pctbx_WeatherIcon.TabStop = false;
             // 
             // trayIcon
@@ -650,7 +660,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(684, 611);
+            this.ClientSize = new System.Drawing.Size(684, 575);
             this.Controls.Add(this.txtbx_NAL_Cold);
             this.Controls.Add(this.chbx_NAL_Cold);
             this.Controls.Add(this.txtbx_NAL_Hot);
@@ -665,9 +675,9 @@
             this.Controls.Add(this.txtbx_NAL_Name);
             this.Controls.Add(this.saveAlerts);
             this.Controls.Add(this.btn_RemoveAlerts);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbl_AlertConditions);
+            this.Controls.Add(this.lbl_AlertTime);
+            this.Controls.Add(this.lbl_AlertName);
             this.Controls.Add(this.pnl_Settings);
             this.Controls.Add(this.btn_SwitchUsers);
             this.Controls.Add(this.btn_Settings);
@@ -742,9 +752,9 @@
         private System.Windows.Forms.CheckBox chbx_Both;
         private System.Windows.Forms.Button btn_SaveSett;
         private System.Windows.Forms.Button btn_SwitchUsers;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbl_AlertName;
+        private System.Windows.Forms.Label lbl_AlertTime;
+        private System.Windows.Forms.Label lbl_AlertConditions;
         private System.Windows.Forms.Button btn_RemoveAlerts;
         private System.Windows.Forms.Button saveAlerts;
         private System.Windows.Forms.TextBox txtbx_NAL_Name;

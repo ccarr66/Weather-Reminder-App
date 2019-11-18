@@ -793,6 +793,7 @@ namespace Weather_Reminder_App
 
         private void emailAlert(string alertMessage)
         {
+            //the users email can be accessed with "User.UserEmailAddr"
             ;
         }
 

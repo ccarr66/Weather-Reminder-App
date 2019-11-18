@@ -87,7 +87,7 @@ namespace Weather_Reminder_App
             this.btn_CreateUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_CreateUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSlateGray;
             this.btn_CreateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CreateUser.Image = global::Weather_Reminder_App.Properties.Resources.UserCreate;
+            this.btn_CreateUser.Image = global::Weather_Reminder_App.Properties.Resources.UserConfirm;
             this.btn_CreateUser.TabIndex = 0;
             this.btn_CreateUser.TabStop = false;
             this.btn_CreateUser.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@ namespace Weather_Reminder_App
             // 
             this.lbl_Username.AutoSize = true;
             this.lbl_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(8, 34);
+            this.lbl_Username.Location = new System.Drawing.Point(8, 14);
             this.lbl_Username.Name = "lbl_Username";
             this.lbl_Username.Size = new System.Drawing.Size(63, 24);
             this.lbl_Username.TabIndex = 0;
@@ -104,7 +104,7 @@ namespace Weather_Reminder_App
             //
             // txtbx_Username
             //
-            this.txtbx_Username.Location = new System.Drawing.Point(50, 65);
+            this.txtbx_Username.Location = new System.Drawing.Point(50, 45);
             this.txtbx_Username.Name = "txtbx_Username";
             this.txtbx_Username.Size = new System.Drawing.Size(170, 20);
             this.txtbx_Username.TabIndex = 1;
@@ -113,7 +113,7 @@ namespace Weather_Reminder_App
             // 
             this.lbl_Location.AutoSize = true;
             this.lbl_Location.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Location.Location = new System.Drawing.Point(8, 100);
+            this.lbl_Location.Location = new System.Drawing.Point(8, 80);
             this.lbl_Location.Name = "lbl_Location";
             this.lbl_Location.Size = new System.Drawing.Size(63, 24);
             this.lbl_Location.TabIndex = 0;
@@ -121,7 +121,7 @@ namespace Weather_Reminder_App
             //
             // txtbx_Username
             //
-            this.txtbx_Location.Location = new System.Drawing.Point(50, 131);
+            this.txtbx_Location.Location = new System.Drawing.Point(50, 111);
             this.txtbx_Location.Name = "txtbx_Location";
             this.txtbx_Location.Size = new System.Drawing.Size(170, 20);
             this.txtbx_Location.TabIndex = 0;
@@ -130,7 +130,7 @@ namespace Weather_Reminder_App
             // 
             this.lbl_EmailAddr.AutoSize = true;
             this.lbl_EmailAddr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_EmailAddr.Location = new System.Drawing.Point(8, 166);
+            this.lbl_EmailAddr.Location = new System.Drawing.Point(8, 146);
             this.lbl_EmailAddr.Name = "lbl_EmailAddr";
             this.lbl_EmailAddr.Size = new System.Drawing.Size(63, 24);
             this.lbl_EmailAddr.TabIndex = 0;
@@ -138,7 +138,7 @@ namespace Weather_Reminder_App
             //
             // txtbx_Username
             //
-            this.txtbx_EmailAddr.Location = new System.Drawing.Point(50, 197);
+            this.txtbx_EmailAddr.Location = new System.Drawing.Point(50, 177);
             this.txtbx_EmailAddr.Name = "txtbx_Location";
             this.txtbx_EmailAddr.Size = new System.Drawing.Size(170, 20);
             this.txtbx_EmailAddr.TabIndex = 0;
@@ -247,8 +247,8 @@ namespace Weather_Reminder_App
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.BackColor = Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "User";
-            this.Text = "User";
+            this.Name = "Weather Alerts User";
+            this.Text = "Weather Alerts User";
             this.ResumeLayout(false);
             this.PerformLayout();
 
