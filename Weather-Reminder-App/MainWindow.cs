@@ -76,11 +76,12 @@ namespace Weather_Reminder_App
         public void updateDisplay()
         {
             endAlertEditing();
-            lbl_DispLoc.Text = WeatherLookup.weatherInfo.Name;
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            lbl_DispLoc.Text = textInfo.ToTitleCase(WeatherLookup.weatherInfo.Name);
             lbl_DispTemp.Text = Math.Round(WeatherLookup.weatherInfo.Main.Temperature.FahrenheitCurrent, 2).ToString() + "°F";
             if (WeatherLookup.weatherInfo.Weathers.Count > 0)
             {
-                lbl_DispGenWeather.Text = WeatherLookup.weatherInfo.Weathers[0].Description;
+                lbl_DispGenWeather.Text = textInfo.ToTitleCase(WeatherLookup.weatherInfo.Weathers[0].Description);
 
                 if (getImage(WeatherLookup.weatherInfo.Weathers[0].Icon + "@2x.png"))
                     pctbx_WeatherIcon.Image = dispImage;
@@ -904,13 +905,13 @@ namespace Weather_Reminder_App
 
                 if (weatherGroup != 7)
                 {
-                    alertMessage += "It is expected to be a " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
-                    + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum, 2) + " and a low of " + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum, 2) + "." + System.Environment.NewLine;
+                    alertMessage += System.Environment.NewLine + "There is expected to be " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
+                    + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum, 2) + " and a low of " + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum, 2) + "." + System.Environment.NewLine + System.Environment.NewLine;
                 }
                 else
                 {
-                    alertMessage += "today there will be a high of "
-                    + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+                    alertMessage += System.Environment.NewLine + "Today there will be a high of "
+                    + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine + System.Environment.NewLine;
                 }
 
                 if ((hot && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum > hotThresh))

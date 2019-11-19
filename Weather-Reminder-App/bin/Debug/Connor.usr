@@ -9,3 +9,5 @@ connorryancarr@gmail.com
 ##Alerts
 Test;9;59;All,Hot(50)
 Test;10;23;Atmos,Rain,Snow,Thund,Cold(65),Hot(70)
+Test;11;52;All
+Test;11;54;All,Hot(40)

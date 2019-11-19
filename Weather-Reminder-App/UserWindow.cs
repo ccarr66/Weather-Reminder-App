@@ -17,6 +17,7 @@ namespace Weather_Reminder_App
         private System.Windows.Forms.Button btn_SelectUser;
         private System.Windows.Forms.Label lbl_Users;
         private System.Windows.Forms.ListBox lstBx_Users;
+        private System.Windows.Forms.PictureBox pctbx_SelectUserLine;
         //Create Controls
         private System.Windows.Forms.Button btn_SwitchtoSwitchUser;
         private System.Windows.Forms.Button btn_CreateUser;
@@ -174,7 +175,18 @@ namespace Weather_Reminder_App
             this.btn_SelectUser = new System.Windows.Forms.Button();
             this.lbl_Users = new System.Windows.Forms.Label();
             this.lstBx_Users = new System.Windows.Forms.ListBox();
+            this.pctbx_SelectUserLine = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
+            // 
+            // pctbx_Line
+            //
+            this.pctbx_SelectUserLine.Image = global::Weather_Reminder_App.Properties.Resources.line_SelectUser;
+            this.pctbx_SelectUserLine.InitialImage = global::Weather_Reminder_App.Properties.Resources.line_SelectUser;
+            this.pctbx_SelectUserLine.Location = new System.Drawing.Point(40, 45);
+            this.pctbx_SelectUserLine.Name = "pctbx_Line";
+            this.pctbx_SelectUserLine.Size = new System.Drawing.Size(155, 3);
+            this.pctbx_SelectUserLine.TabIndex = 1;
+            this.pctbx_SelectUserLine.TabStop = false;
             // 
             // btn_CreateNewUser
             // 
@@ -214,9 +226,9 @@ namespace Weather_Reminder_App
             // 
             this.lbl_Users.AutoSize = true;
             this.lbl_Users.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Users.Location = new System.Drawing.Point(40, 10);
+            this.lbl_Users.Location = new System.Drawing.Point(42, 20);
             this.lbl_Users.Name = "lbl_Users";
-            this.lbl_Users.Size = new System.Drawing.Size(155, 40);
+            this.lbl_Users.Size = new System.Drawing.Size(155, 20);
             this.lbl_Users.TabIndex = 0;
             this.lbl_Users.AutoSize = false;
             this.lbl_Users.TextAlign = ContentAlignment.MiddleCenter;
@@ -245,12 +257,14 @@ namespace Weather_Reminder_App
             this.Controls.Add(this.lbl_Users);
             this.Controls.Add(this.btn_SelectUser);
             this.Controls.Add(this.btn_SwitchtoCreateUser);
+            this.Controls.Add(this.pctbx_SelectUserLine);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.BackColor = Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Weather Alerts User";
             this.Text = "Weather Alerts User";
             this.MaximizeBox = false;
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_SelectUserLine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

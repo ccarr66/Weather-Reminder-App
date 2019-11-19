@@ -113,7 +113,7 @@
             // 
             this.lbl_DispGenWeather.AutoSize = true;
             this.lbl_DispGenWeather.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DispGenWeather.Location = new System.Drawing.Point(199, 111);
+            this.lbl_DispGenWeather.Location = new System.Drawing.Point(200, 112);
             this.lbl_DispGenWeather.Name = "lbl_DispGenWeather";
             this.lbl_DispGenWeather.Size = new System.Drawing.Size(131, 31);
             this.lbl_DispGenWeather.TabIndex = 0;
@@ -572,7 +572,7 @@
             // 
             this.pctbx_Line.Image = global::Weather_Reminder_App.Properties.Resources.line;
             this.pctbx_Line.InitialImage = global::Weather_Reminder_App.Properties.Resources.line;
-            this.pctbx_Line.Location = new System.Drawing.Point(0, 406);
+            this.pctbx_Line.Location = new System.Drawing.Point(6, 406);
             this.pctbx_Line.Name = "pctbx_Line";
             this.pctbx_Line.Size = new System.Drawing.Size(485, 3);
             this.pctbx_Line.TabIndex = 1;
