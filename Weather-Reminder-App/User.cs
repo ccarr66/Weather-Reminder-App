@@ -242,6 +242,11 @@ namespace Weather_Reminder_App
             return (new EmailAddressAttribute().IsValid(emailAddr));
         }
 
+        public static void resetAlerts()
+        {
+            alerts = new List<UserAlert>();
+        }
+
     }
 
     class UserAlert

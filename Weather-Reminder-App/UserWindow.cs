@@ -353,6 +353,7 @@ namespace Weather_Reminder_App
                     User.AlertPreference = UserPreference.Both;
                 else
                     User.AlertPreference = UserPreference.Desktop;
+                User.resetAlerts();
 
                 if (!User.saveUser())
                     return;
