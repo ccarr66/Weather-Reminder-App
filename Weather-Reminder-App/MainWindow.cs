@@ -860,76 +860,80 @@ namespace Weather_Reminder_App
                 }
             }
 
-
-            int weatherGroup = (int)Math.Floor((decimal)WeatherLookup.weatherInfo.Weathers[0].ID / 100);
-
-            if (weatherGroup != 7)
+            if (WeatherLookup.weatherInfo.Weathers.Count > 0)
             {
-                alertMessage += "It is expected to be a " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
-                + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+                int weatherGroup = (int)Math.Floor((decimal)WeatherLookup.weatherInfo.Weathers[0].ID / 100);
+
+                if (weatherGroup != 7)
+                {
+                    alertMessage += "It is expected to be a " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
+                    + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+                }
+                else
+                {
+                    alertMessage += "today there will be a high of "
+                    + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+                }
+
+                if ((hot && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum > hotThresh))
+                {
+                    alertMessage += "Make sure to wear light clothing today! It'll be hot...";
+                    alertNeeded = true;
+                }
+                else if ((cold && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum < coldThresh))
+                {
+                    alertMessage += "It'll be cold today, make sure to wear warm clothes...";
+                    alertNeeded = true;
+                }
+
+                switch (weatherGroup)
+                {
+                    case 2:
+                        {
+                            if (thunder || all)
+                            {
+                                alertMessage += "There's going to be a thunderstorm so don't forget rain-resistant clothing and stay safe.";
+                                alertNeeded = true;
+                            }
+                            break;
+                        }
+                    case 3:
+                    case 5:
+                        {
+                            if (rain || all)
+                            {
+                                alertMessage += "It's going to rain so don't forget rain-resistant clothing and to stay safe.";
+                                alertNeeded = true;
+                            }
+                            break;
+                        }
+                    case 6:
+                        {
+                            if (snow || all)
+                            {
+                                alertMessage += "It's going to snow so don't forget warm, water-proof clothing and to stay safe." + System.Environment.NewLine + "If you're driving don't forget your snow chains!";
+                                alertNeeded = true;
+                            }
+                            break;
+                        }
+                    case 7:
+                        {
+                            if (atmosphere || all)
+                            {
+                                alertMessage += System.Environment.NewLine + "Atmospheric Warning: " + WeatherLookup.weatherInfo.Weathers[0].Description;
+                                alertNeeded = true;
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                }
+
+
+                return true;
             }
             else
-            {
-                alertMessage += "today there will be a high of "
-                + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
-            }
-
-            if ((hot && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum > hotThresh))
-            {
-                alertMessage += "Make sure to wear light clothing today! It'll be hot...";
-                alertNeeded = true;
-            }
-            else if ((cold && (int)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum < coldThresh))
-            {
-                alertMessage += "It'll be cold today, make sure to wear warm clothes...";
-                alertNeeded = true;
-            }
-
-            switch (weatherGroup)
-            {
-                case 2:
-                    {
-                        if (thunder || all)
-                        {
-                            alertMessage += "There's going to be a thunderstorm so don't forget rain-resistant clothing and stay safe.";
-                            alertNeeded = true;
-                        }
-                        break;
-                    }
-                case 3:
-                case 5:
-                    {
-                        if (rain || all)
-                        {
-                            alertMessage += "It's going to rain so don't forget rain-resistant clothing and to stay safe.";
-                            alertNeeded = true;
-                        }
-                        break;
-                    }
-                case 6:
-                    {
-                        if (snow || all)
-                        {
-                            alertMessage += "It's going to snow so don't forget warm, water-proof clothing and to stay safe." + System.Environment.NewLine + "If you're driving don't forget your snow chains!";
-                            alertNeeded = true;
-                        }
-                        break;
-                    }
-                case 7:
-                    {
-                        if (atmosphere || all)
-                        {
-                            alertMessage += System.Environment.NewLine + "Atmospheric Warning: " + WeatherLookup.weatherInfo.Weathers[0].Description;
-                            alertNeeded = true;
-                        }
-                        break;
-                    }
-                default:
-                    break;
-            }
-
-
-            return true;
+                return false;
         }
 
         private void chbx_NAL_All_CheckedChanged(object sender, EventArgs e)
