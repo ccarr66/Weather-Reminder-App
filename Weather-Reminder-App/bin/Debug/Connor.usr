@@ -1,14 +1,11 @@
 ##Username
 Connor
 ##Location
-Pomona
+Oslo
 ##User Alert Preference
-Desktop
+Both
 ##Email Address
-
+connorryancarr@gmail.com
 ##Alerts
-Morning;6;30;All,Cold(50),Hot(90)
-Test;6;0;Atmos
-Test;6;0;Atmos
-Test;6;0;Atmos
-Test;6;0;Atmos
+Test;9;59;All,Hot(50)
+Test;10;23;Atmos,Rain,Snow,Thund,Cold(65),Hot(70)

@@ -12,6 +12,8 @@ using System.Net.Http;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Net.Mail;
+using System.Threading;
 
 namespace Weather_Reminder_App
 {
@@ -330,7 +332,7 @@ namespace Weather_Reminder_App
         private void btn_SwitchUsers_Click(object sender, EventArgs e)
         {
             nextMode = Program.WindowMode.Select;
-            alertTimer = new System.Windows.Forms.Timer();
+            disableAlert();
             User.determineAvailableUsers();
             this.Close();
         }
@@ -719,7 +721,11 @@ namespace Weather_Reminder_App
 
         private void setNextAlert()
         {
+            //if (alertTimer != null && alertTimer.Enabled)
+            //    alertTimer.Stop();
+            disableAlert();
             alertTimer = new System.Windows.Forms.Timer();
+
             if (User.UserAlerts.Count > 0)
             {
                 int nextAlertTime = 1000;
@@ -766,7 +772,7 @@ namespace Weather_Reminder_App
 
         private void alertEvent(object source, EventArgs e)
         {
-            alertTimer.Stop();
+            disableAlert();
             restoreWindow();
             bool alertNeeded = false;
             string alertMessage = "";
@@ -775,14 +781,26 @@ namespace Weather_Reminder_App
             {
                 if (User.AlertPreference == UserPreference.Both)
                 {
-                    desktopAlert(alertMessage);
-                    emailAlert(alertMessage);
+                    if (!emailAlert(alertMessage))
+                    {
+                        alertMessage = "Could not send email!" + System.Environment.NewLine + System.Environment.NewLine + "Message: " + System.Environment.NewLine + alertMessage;
+                        desktopAlert(alertMessage);
+                    }
+                    else
+                        desktopAlert(alertMessage);
                 }
                 else if (User.AlertPreference == UserPreference.Email)
-                    emailAlert(alertMessage);
+                {
+                    if(!emailAlert(alertMessage))
+                    {
+                        alertMessage = "Could not send email!" + System.Environment.NewLine + System.Environment.NewLine + "Message: " + System.Environment.NewLine + alertMessage;
+                        desktopAlert(alertMessage);
+                    }
+                }
                 else
                     desktopAlert(alertMessage);
             }
+            Thread.Sleep(1000);
             setNextAlert();
         }
 
@@ -791,10 +809,30 @@ namespace Weather_Reminder_App
             MessageBox.Show(alertMessage, "Weather Reminder", MessageBoxButtons.OK);
         }
 
-        private void emailAlert(string alertMessage)
+        private bool emailAlert(string alertMessage)
         {
             //the users email can be accessed with "User.UserEmailAddr"
-            ;
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("testaccn67@gmail.com"); //test Email used as sender
+                mail.To.Add(User.UserEmailAddr); //Users email to receive alert. Can only use gmail accounts
+                mail.Subject = "Weather Alert"; //subject title of email
+                mail.Body = alertMessage; //alert message in body of email
+
+                SmtpServer.Port = 587; //gmail smtp port
+                SmtpServer.Credentials = new System.Net.NetworkCredential("testaccn67@gmail.com", "weatherapp19"); //user and password credentials respectively
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool getAlertMessage(out bool alertNeeded, out string alertMessage)
@@ -867,7 +905,7 @@ namespace Weather_Reminder_App
                 if (weatherGroup != 7)
                 {
                     alertMessage += "It is expected to be a " + WeatherLookup.weatherInfo.Weathers[0].Description + " today, with a high of "
-                    + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum + " and a low of " + WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum + "." + System.Environment.NewLine;
+                    + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMaximum, 2) + " and a low of " + Math.Round((decimal)WeatherLookup.weatherInfo.Main.Temperature.FahrenheitMinimum, 2) + "." + System.Environment.NewLine;
                 }
                 else
                 {
@@ -992,6 +1030,15 @@ namespace Weather_Reminder_App
             trayIcon.Visible = false;
         }
 
+        private void disableAlert()
+        {
+            if(alertTimer != null)
+            {
+                alertTimer.Enabled = false;
+                alertTimer.Stop();
+                alertTimer = null;
+            }
+        }
     }
 
 }

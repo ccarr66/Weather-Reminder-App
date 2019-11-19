@@ -160,6 +160,7 @@ namespace Weather_Reminder_App
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Weather Alerts User";
             this.Text = "Weather Alerts User";
+            this.MaximizeBox = false;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -249,6 +250,7 @@ namespace Weather_Reminder_App
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Weather Alerts User";
             this.Text = "Weather Alerts User";
+            this.MaximizeBox = false;
             this.ResumeLayout(false);
             this.PerformLayout();
 

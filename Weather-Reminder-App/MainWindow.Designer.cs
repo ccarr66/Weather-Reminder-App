@@ -47,7 +47,7 @@
             this.lbl_DispWindDir = new System.Windows.Forms.Label();
             this.lbl_LCloud = new System.Windows.Forms.Label();
             this.lbl_DispClouds = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_Alerts = new System.Windows.Forms.Label();
             this.pnl_Settings = new System.Windows.Forms.Panel();
             this.btn_SaveSett = new System.Windows.Forms.Button();
             this.chbx_Both = new System.Windows.Forms.CheckBox();
@@ -76,14 +76,16 @@
             this.txtbx_NAL_Hot = new System.Windows.Forms.TextBox();
             this.txtbx_NAL_Cold = new System.Windows.Forms.TextBox();
             this.chbx_NAL_Cold = new System.Windows.Forms.CheckBox();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.pctbx_Line = new System.Windows.Forms.PictureBox();
             this.saveAlerts = new System.Windows.Forms.Button();
             this.btn_RemoveAlerts = new System.Windows.Forms.Button();
             this.btn_SwitchUsers = new System.Windows.Forms.Button();
             this.btn_Settings = new System.Windows.Forms.Button();
             this.btn_AddAlerts = new System.Windows.Forms.Button();
             this.pctbx_WeatherIcon = new System.Windows.Forms.PictureBox();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnl_Settings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_Line)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctbx_WeatherIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,18 +142,20 @@
             // lbl_LMaxTemp
             // 
             this.lbl_LMaxTemp.AutoSize = true;
+            this.lbl_LMaxTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LMaxTemp.Location = new System.Drawing.Point(140, 170);
             this.lbl_LMaxTemp.Name = "lbl_LMaxTemp";
-            this.lbl_LMaxTemp.Size = new System.Drawing.Size(30, 13);
+            this.lbl_LMaxTemp.Size = new System.Drawing.Size(40, 16);
             this.lbl_LMaxTemp.TabIndex = 0;
             this.lbl_LMaxTemp.Text = "Max:";
             // 
             // lbl_LMinTemp
             // 
             this.lbl_LMinTemp.AutoSize = true;
+            this.lbl_LMinTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_LMinTemp.Location = new System.Drawing.Point(249, 170);
             this.lbl_LMinTemp.Name = "lbl_LMinTemp";
-            this.lbl_LMinTemp.Size = new System.Drawing.Size(27, 13);
+            this.lbl_LMinTemp.Size = new System.Drawing.Size(31, 13);
             this.lbl_LMinTemp.TabIndex = 0;
             this.lbl_LMinTemp.Text = "Min:";
             // 
@@ -255,15 +259,15 @@
             this.lbl_DispClouds.TabIndex = 0;
             this.lbl_DispClouds.Text = "(ERROR)";
             // 
-            // label1
+            // lbl_Alerts
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 377);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(485, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Alerts";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_Alerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Alerts.Location = new System.Drawing.Point(0, 364);
+            this.lbl_Alerts.Name = "lbl_Alerts";
+            this.lbl_Alerts.Size = new System.Drawing.Size(485, 39);
+            this.lbl_Alerts.TabIndex = 0;
+            this.lbl_Alerts.Text = "Alerts";
+            this.lbl_Alerts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnl_Settings
             // 
@@ -405,30 +409,30 @@
             // lbl_AlertName
             // 
             this.lbl_AlertName.AutoSize = true;
-            this.lbl_AlertName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_AlertName.Location = new System.Drawing.Point(12, 416);
             this.lbl_AlertName.Name = "lbl_AlertName";
-            this.lbl_AlertName.Size = new System.Drawing.Size(51, 20);
+            this.lbl_AlertName.Size = new System.Drawing.Size(55, 20);
             this.lbl_AlertName.TabIndex = 0;
             this.lbl_AlertName.Text = "Name";
             // 
             // lbl_AlertTime
             // 
             this.lbl_AlertTime.AutoSize = true;
-            this.lbl_AlertTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_AlertTime.Location = new System.Drawing.Point(139, 416);
             this.lbl_AlertTime.Name = "lbl_AlertTime";
-            this.lbl_AlertTime.Size = new System.Drawing.Size(43, 20);
+            this.lbl_AlertTime.Size = new System.Drawing.Size(47, 20);
             this.lbl_AlertTime.TabIndex = 0;
             this.lbl_AlertTime.Text = "Time";
             // 
             // lbl_AlertConditions
             // 
             this.lbl_AlertConditions.AutoSize = true;
-            this.lbl_AlertConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AlertConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_AlertConditions.Location = new System.Drawing.Point(203, 416);
             this.lbl_AlertConditions.Name = "lbl_AlertConditions";
-            this.lbl_AlertConditions.Size = new System.Drawing.Size(84, 20);
+            this.lbl_AlertConditions.Size = new System.Drawing.Size(94, 20);
             this.lbl_AlertConditions.TabIndex = 0;
             this.lbl_AlertConditions.Text = "Conditions";
             // 
@@ -557,6 +561,23 @@
             this.chbx_NAL_Cold.Text = "Cold";
             this.chbx_NAL_Cold.UseVisualStyleBackColor = true;
             // 
+            // trayIcon
+            // 
+            this.trayIcon.BalloonTipTitle = "Weather Alerts";
+            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
+            this.trayIcon.Text = "Weather Alerts";
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
+            // 
+            // pctbx_Line
+            // 
+            this.pctbx_Line.Image = global::Weather_Reminder_App.Properties.Resources.line;
+            this.pctbx_Line.InitialImage = global::Weather_Reminder_App.Properties.Resources.line;
+            this.pctbx_Line.Location = new System.Drawing.Point(0, 406);
+            this.pctbx_Line.Name = "pctbx_Line";
+            this.pctbx_Line.Size = new System.Drawing.Size(485, 3);
+            this.pctbx_Line.TabIndex = 1;
+            this.pctbx_Line.TabStop = false;
+            // 
             // saveAlerts
             // 
             this.saveAlerts.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -565,7 +586,7 @@
             this.saveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.saveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.EditConfirm;
-            this.saveAlerts.Location = new System.Drawing.Point(387, 382);
+            this.saveAlerts.Location = new System.Drawing.Point(387, 369);
             this.saveAlerts.Name = "saveAlerts";
             this.saveAlerts.Size = new System.Drawing.Size(25, 25);
             this.saveAlerts.TabIndex = 0;
@@ -581,7 +602,7 @@
             this.btn_RemoveAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_RemoveAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RemoveAlerts.Image = global::Weather_Reminder_App.Properties.Resources.DeleteAlert;
-            this.btn_RemoveAlerts.Location = new System.Drawing.Point(418, 382);
+            this.btn_RemoveAlerts.Location = new System.Drawing.Point(418, 369);
             this.btn_RemoveAlerts.Name = "btn_RemoveAlerts";
             this.btn_RemoveAlerts.Size = new System.Drawing.Size(25, 25);
             this.btn_RemoveAlerts.TabIndex = 0;
@@ -630,7 +651,7 @@
             this.btn_AddAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_AddAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AddAlerts.Image = global::Weather_Reminder_App.Properties.Resources.AddAlert;
-            this.btn_AddAlerts.Location = new System.Drawing.Point(449, 382);
+            this.btn_AddAlerts.Location = new System.Drawing.Point(449, 369);
             this.btn_AddAlerts.Name = "btn_AddAlerts";
             this.btn_AddAlerts.Size = new System.Drawing.Size(25, 25);
             this.btn_AddAlerts.TabIndex = 0;
@@ -648,19 +669,13 @@
             this.pctbx_WeatherIcon.TabIndex = 0;
             this.pctbx_WeatherIcon.TabStop = false;
             // 
-            // trayIcon
-            // 
-            this.trayIcon.BalloonTipTitle = "Weather Alerts";
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "Weather Alerts";
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(684, 575);
+            this.Controls.Add(this.pctbx_Line);
             this.Controls.Add(this.txtbx_NAL_Cold);
             this.Controls.Add(this.chbx_NAL_Cold);
             this.Controls.Add(this.txtbx_NAL_Hot);
@@ -682,7 +697,7 @@
             this.Controls.Add(this.btn_SwitchUsers);
             this.Controls.Add(this.btn_Settings);
             this.Controls.Add(this.btn_AddAlerts);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_Alerts);
             this.Controls.Add(this.lbl_DispClouds);
             this.Controls.Add(this.lbl_LCloud);
             this.Controls.Add(this.lbl_DispWindDir);
@@ -709,6 +724,7 @@
             this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.pnl_Settings.ResumeLayout(false);
             this.pnl_Settings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_Line)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctbx_WeatherIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -735,7 +751,7 @@
         private System.Windows.Forms.Label lbl_DispWindDir;
         private System.Windows.Forms.Label lbl_LCloud;
         private System.Windows.Forms.Label lbl_DispClouds;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_Alerts;
         private System.Windows.Forms.Button btn_AddAlerts;
         private System.Windows.Forms.Button btn_Settings;
         private System.Windows.Forms.Panel pnl_Settings;
@@ -770,6 +786,7 @@
         private System.Windows.Forms.TextBox txtbx_NAL_Cold;
         private System.Windows.Forms.CheckBox chbx_NAL_Cold;
         private System.Windows.Forms.NotifyIcon trayIcon;
+        private System.Windows.Forms.PictureBox pctbx_Line;
     }
 }
 
