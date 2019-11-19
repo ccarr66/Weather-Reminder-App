@@ -322,11 +322,11 @@ namespace Weather_Reminder_App
             if (txtbx_EmailAddr.Text != "")
             {
                 emailValid = User.validateEmailAddr(txtbx_EmailAddr.Text);
-                txtbx_EmailAddr.BackColor = (emailValid) ? Color.White : Color.LightGoldenrodYellow;
+                txtbx_EmailAddr.BackColor = (emailValid) ? Color.White : Color.Goldenrod;
             }
 
-            txtbx_Username.BackColor = (usrValid) ? Color.White : Color.LightGoldenrodYellow;
-            txtbx_Location.BackColor = (locValid) ? Color.White : Color.LightGoldenrodYellow;
+            txtbx_Username.BackColor = (usrValid) ? Color.White : Color.Goldenrod;
+            txtbx_Location.BackColor = (locValid) ? Color.White : Color.Goldenrod;
 
             if (usrValid && locValid && emailValid)
             {
