@@ -774,7 +774,6 @@ namespace Weather_Reminder_App
         private void alertEvent(object source, EventArgs e)
         {
             disableAlert();
-            restoreWindow();
             bool alertNeeded = false;
             string alertMessage = "";
             bool alertMessageCreated = getAlertMessage(out alertNeeded, out alertMessage);
@@ -807,6 +806,7 @@ namespace Weather_Reminder_App
 
         private void desktopAlert(string alertMessage)
         {
+            restoreWindow();
             MessageBox.Show(alertMessage, "Weather Reminder", MessageBoxButtons.OK);
         }
 
@@ -1039,6 +1039,21 @@ namespace Weather_Reminder_App
                 alertTimer.Stop();
                 alertTimer = null;
             }
+        }
+
+        private void btn_Settings_MouseEnter(object sender, EventArgs e)
+        {
+            btn_Settings.Image = global::Weather_Reminder_App.Properties.Resources.SettingsH;
+        }
+
+        private void MainWindow_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Settings.Image = global::Weather_Reminder_App.Properties.Resources.Settings;
+        }
+
+        private void btn_Settings_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Settings.Image = global::Weather_Reminder_App.Properties.Resources.SettingsH;
         }
     }
 

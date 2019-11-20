@@ -73,6 +73,16 @@ namespace Weather_Reminder_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddAlertH {
+            get {
+                object obj = ResourceManager.GetObject("AddAlertH", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeleteAlert {
             get {
                 object obj = ResourceManager.GetObject("DeleteAlert", resourceCulture);
@@ -83,9 +93,29 @@ namespace Weather_Reminder_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DeleteAlertH {
+            get {
+                object obj = ResourceManager.GetObject("DeleteAlertH", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EditConfirm {
             get {
                 object obj = ResourceManager.GetObject("EditConfirm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditConfirmH {
+            get {
+                object obj = ResourceManager.GetObject("EditConfirmH", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +173,29 @@ namespace Weather_Reminder_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SettingsH {
+            get {
+                object obj = ResourceManager.GetObject("SettingsH", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SwitchUsers {
             get {
                 object obj = ResourceManager.GetObject("SwitchUsers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SwitchUsersH {
+            get {
+                object obj = ResourceManager.GetObject("SwitchUsersH", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

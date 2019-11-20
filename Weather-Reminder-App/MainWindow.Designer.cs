@@ -153,7 +153,7 @@
             // 
             this.lbl_LMinTemp.AutoSize = true;
             this.lbl_LMinTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LMinTemp.Location = new System.Drawing.Point(249, 170);
+            this.lbl_LMinTemp.Location = new System.Drawing.Point(266, 173);
             this.lbl_LMinTemp.Name = "lbl_LMinTemp";
             this.lbl_LMinTemp.Size = new System.Drawing.Size(31, 13);
             this.lbl_LMinTemp.TabIndex = 0;
@@ -173,7 +173,7 @@
             // 
             this.lbl_DispMinTemp.AutoSize = true;
             this.lbl_DispMinTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DispMinTemp.Location = new System.Drawing.Point(282, 170);
+            this.lbl_DispMinTemp.Location = new System.Drawing.Point(299, 173);
             this.lbl_DispMinTemp.Name = "lbl_DispMinTemp";
             this.lbl_DispMinTemp.Size = new System.Drawing.Size(54, 20);
             this.lbl_DispMinTemp.TabIndex = 0;
